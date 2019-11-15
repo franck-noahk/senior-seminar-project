@@ -1,0 +1,19 @@
+{
+    "name": "senior-seminar-project",
+    "version": "1.0.0",
+    "description": "",
+    "scripts": {
+        "deploy-dev": "firebase deploy --project senior-seminar-project-dev",
+        "deploy-prod": "firebase deploy --project senior-seminar-project-prod"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/franck-noahk/senior-seminar-project.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/franck-noahk/senior-seminar-project/issues"
+    },
+    "homepage": "https://github.com/franck-noahk/senior-seminar-project#readme"
+}
