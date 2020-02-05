@@ -11,7 +11,7 @@ jobs:
     steps:
       - checkout
       - run: flutter doctor
-      - run: flutter test
+      - run: cd e_bulletin
       - run: flutter test --machine > e_bulletin/build/testResults.json
 
 
