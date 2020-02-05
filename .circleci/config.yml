@@ -11,8 +11,8 @@ jobs:
     steps:
       - checkout
       - run: flutter doctor
-      - run: cd e_bulletin
-      - run: flutter test 
+      - run: cd e_bulletin; flutter test;
+      
 
 
 workflows:
