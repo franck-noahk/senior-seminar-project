@@ -15,5 +15,6 @@
     "bugs": {
         "url": "https://github.com/franck-noahk/senior-seminar-project/issues"
     },
-    "homepage": "https://github.com/franck-noahk/senior-seminar-project#readme"
+    "homepage": "https://github.com/franck-noahk/senior-seminar-project#readme",
+    "dependencies": {}
 }
