@@ -11,8 +11,7 @@ jobs:
 
     runs-on: [macos-latest]
 
-    container:
-      image:  google/dart:latest
+    container: google/dart:latest
 
     steps:
     - uses: actions/checkout@v2
