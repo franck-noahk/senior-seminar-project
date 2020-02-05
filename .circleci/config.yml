@@ -1,17 +1,18 @@
-version: 2.1
-orbs:
-  # Declare a dependency on the welcome-orb
-  welcome: circleci/welcome-orb@0.4.1
-# Orchestrate or schedule a set of jobs
+version: 2
+# orbs:
+#   # Declare a dependency on the welcome-orb
+#   welcome: circleci/welcome-orb@0.4.1
+# # Orchestrate or schedule a set of jobs
 jobs:
   build:
     docker:
-      - image: cirrusci/flutter
+      image: cirrusci/flutter:latest
+
     steps:
       - checkout
       - run: flutter doctor
       - run: flutter test
-      - run: flutter test --machine > flutter/build/testResults.json
+      - run: flutter test --machine > e_bulletin/build/testResults.json
 
 
 workflows:
