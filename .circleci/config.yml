@@ -4,7 +4,7 @@ version: 2
 #   welcome: circleci/welcome-orb@0.4.1
 # # Orchestrate or schedule a set of jobs
 jobs:
-  build:
+  flutter_test:
     docker:
       - image: cirrusci/flutter:latest
 
@@ -12,6 +12,23 @@ jobs:
       - checkout
       - run: flutter doctor
       - run: cd e_bulletin; flutter test;
+  
+  flutter_build:
+    docker: 
+      - image: cirrusci/flutter:latest
+    
+    steps:
+      - checkout
+      - run: flutter doctor
+      - run: cd e_bulletin; flutter build apk;
+
+  html_test:
+    docker:
+      - image: circleci/node
+
+    steps:
+      - checkout
+      - run: cd public; npm install; npm test;
       
 
 
@@ -19,5 +36,7 @@ workflows:
   version: 2
   build-and-test:
     jobs:
-      - build
+      - flutter_test
+      - flutter_build
+      - html_test
       
