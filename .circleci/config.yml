@@ -28,7 +28,7 @@ jobs:
 
     steps:
       - checkout
-      - run: cd public; npm test;
+      - run: cd public; npm install; npm test;
       
 
 
