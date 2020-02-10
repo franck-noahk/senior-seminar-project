@@ -18,13 +18,6 @@ function App(){
 		.auth()
 		.signInWithPopup(provider)
 		.then(function(result){
-			// User is signed in.
-			// IdP data available in result.additionalUserInfo.profile.
-			// OAuth access token can also be retrieved:
-			// result.credential.accessToken
-			// OAuth ID token can also be retrieved:
-			// result.credential.idToken
-
 			console.log('resutl' + result);
 		})
 		.catch(function(error){
