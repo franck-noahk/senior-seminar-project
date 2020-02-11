@@ -11,10 +11,29 @@ const db = admin.firestore();
 // });
 
 exports.addUserToDB = functions.auth.user().onCreate((user) => {
-	db.doc('users/' + user.uid).set({
-		email       : user.email,
-		name        : user.displayName,
-		isAdmin     : false,
-		isFollowing : [],
-	});
+	if (user.email.contains('@my.uu.edu')) {
+		//TODO: set up the teacher/authorized users.
+		db.doc('admins/' + user.uid).set({
+			email        : user.email,
+			name         : user.displayName,
+			uid          : user.uid,
+			orginization : '',
+		});
+	} else if (user.email.contains('@uu.edu')) {
+		db.doc('users/' + user.uid).set({
+			email       : user.email,
+			uid         : user.uid,
+			name        : user.displayName,
+			isAdmin     : false,
+			isFollowing : [],
+		});
+	} else {
+		//TODO: Catch all for unknown user
+
+		db.doc('randomUsers' + user.uid).set({
+			email : user.email,
+			name  : user.displayName,
+			date  : user.uid,
+		});
+	}
 });
