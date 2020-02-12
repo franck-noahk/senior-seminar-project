@@ -1,4 +1,8 @@
+import 'dart:developer';
+
+import 'package:e_bulletin/widgets/layout/UpCommingEventsList.dart';
 import 'package:flutter/material.dart';
+import 'constants.dart';
 
 void main() => runApp(MyApp());
 
@@ -23,22 +27,17 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  void _incrementCounter() {
-    setState(() {});
-  }
-
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-        ),
-      ),
+      body: layoutWidgetArr[screen],
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: screen,
+        
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.calendar_today),
@@ -47,8 +46,18 @@ class _MyHomePageState extends State<MyHomePage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
             title: Text("Settings"),
+            
           ),
         ],
+        onTap: (pageNum) {
+          log(screen.toString());
+          setState(() {
+            print(screen);
+            screen = pageNum;
+            print(screen);
+          });
+          log(screen.toString());
+        },
       ),
     );
   }
