@@ -31,7 +31,7 @@ jobs:
       - run: cd public; npm install; npm test;
 
   html_deploy:
-    working_directory: ~/public
+    working_directory: ~/project/public
     docker:
       - image: circleci/node
     steps:
