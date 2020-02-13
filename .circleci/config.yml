@@ -12,11 +12,11 @@ jobs:
       - checkout
       - run: flutter doctor
       - run: cd e_bulletin; flutter test;
-  
+
   flutter_build:
-    docker: 
+    docker:
       - image: cirrusci/flutter:latest
-    
+
     steps:
       - checkout
       - run: flutter doctor
@@ -29,8 +29,14 @@ jobs:
     steps:
       - checkout
       - run: cd public; npm install; npm test;
-      
 
+  html_deploy:
+    docker:
+      - image: circleci/node
+    steps:
+      - checkout
+      - run: cd public; npm run build;
+      - run: ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN" --only hosting
 
 workflows:
   version: 2
@@ -39,4 +45,6 @@ workflows:
       - flutter_test
       - flutter_build
       - html_test
-      
+      - html_deploy:
+          requires:
+            - html_test
