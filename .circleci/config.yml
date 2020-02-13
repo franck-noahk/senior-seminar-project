@@ -31,14 +31,13 @@ jobs:
       - run: cd public; npm install; npm test;
 
   html_deploy:
-    working_directory: ~/project/public
     docker:
       - image: circleci/node
     steps:
       - checkout
       - restore_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
-      - run: npm install; npm run build;
+      - run: cd public; npm install; npm run build;
       - run: npm install; ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN" --only hosting
       - save_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
