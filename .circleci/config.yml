@@ -38,7 +38,7 @@ jobs:
       - restore_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
       - run: cd public; npm install; npm run build;
-      - run: ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN" --only hosting
+      - run: npm install; ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN" --only hosting
       - save_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
           paths:
