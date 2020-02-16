@@ -5,8 +5,10 @@ class SettingsLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("Testing");
     return Center(
-      child: Text("Settings"),
+      key: Key("TESTING"),
+      child: Text("Testing"),
     );
   }
 }
