@@ -38,5 +38,15 @@ void main() {
     expect(calIcon, findsOneWidget);
     var textFinder = find.byType(Text);
     expect(textFinder, findsNWidgets(3));
+
+    await tester.tap(gearIcon);
+    await tester.pump();
+    var nameFinder = find.widgetWithText(Center, "Testing");
+    expect(nameFinder, findsOneWidget);
+
+    await tester.tap(calIcon);
+    await tester.pump();
+    textFinder = find.byType(Text);
+    expect(textFinder, findsNWidgets(3));
   });
 }
