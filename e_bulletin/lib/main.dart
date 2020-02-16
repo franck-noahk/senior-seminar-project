@@ -29,29 +29,30 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    Widget myBottomNavBar = BottomNavigationBar(
+      currentIndex: screen,
+      items: [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.calendar_today),
+          title: Text("Events"),
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.settings),
+          title: Text("Settings"),
+        ),
+      ],
+      onTap: (pageNum) {
+        setState(() {
+          screen = pageNum;
+        });
+      },
+    );
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
       body: layoutWidgetArr[screen],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: screen,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.calendar_today),
-            title: Text("Events"),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            title: Text("Settings"),
-          ),
-        ],
-        onTap: (pageNum) {
-          setState(() {
-            screen = pageNum;
-          });
-        },
-      ),
+      bottomNavigationBar: myBottomNavBar,
     );
   }
 }
