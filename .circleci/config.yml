@@ -12,11 +12,11 @@ jobs:
       - checkout
       - run: flutter doctor
       - run: cd e_bulletin; flutter test;
-  
+
   flutter_build:
-    docker: 
+    docker:
       - image: cirrusci/flutter:latest
-    
+
     steps:
       - checkout
       - run: flutter doctor
@@ -29,8 +29,20 @@ jobs:
     steps:
       - checkout
       - run: cd public; npm install; npm test;
-      
 
+  html_deploy:
+    docker:
+      - image: circleci/node
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package-lock.json" }}
+      - run: cd public; npm install; npm run build;
+      - run: npm install; ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN" --only hosting
+      - save_cache:
+          key: dependency-cache-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
 
 workflows:
   version: 2
@@ -39,4 +51,6 @@ workflows:
       - flutter_test
       - flutter_build
       - html_test
-      
+      - html_deploy:
+          requires:
+            - html_test
