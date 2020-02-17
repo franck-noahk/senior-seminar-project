@@ -49,7 +49,15 @@ workflows:
   build-and-test:
     jobs:
       - flutter_test
-      - flutter_build
+      - flutter_build:
+          requires:
+            - flutter_test
+          filters:
+            branches:
+              only:
+                - Development
+                - master
+
       - html_test
       - html_deploy:
           requires:
