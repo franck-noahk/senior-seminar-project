@@ -1,4 +1,4 @@
-package com.example.e_bulletin
+package com.e_bulletin
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity
