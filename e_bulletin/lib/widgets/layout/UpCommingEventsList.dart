@@ -8,9 +8,35 @@ class UpcommingEventsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-      ),
-    );
+        child: ListView(
+      children: <Widget>[
+        Card(
+          child: ListTile(
+            title: Text("CARD OF FUN"),
+            subtitle: Text("Dates are also fun"),
+          ),
+        ),
+        Card(
+          child: ListTile(
+            title: Text("CARD OF FUN"),
+          ),
+        ),
+        Card(
+          child: ListTile(
+            title: Text("CARD OF FUN"),
+          ),
+        ),
+        Card(
+          child: ListTile(
+            title: Text("CARD OF FUN"),
+          ),
+        ),
+        Card(
+          child: ListTile(
+            title: Text("CARD OF FUN"),
+          ),
+        ),
+      ],
+    ));
   }
 }

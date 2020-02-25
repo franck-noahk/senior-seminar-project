@@ -10,6 +10,7 @@ int MAX_PAGES = 2;
 ThemeData defaultTheme = new ThemeData(
   primaryColor: Colors.red,
   accentColor: Colors.greenAccent,
+  appBarTheme: AppBarTheme(elevation: 5.0,)
 );
 List<Widget> layoutWidgetArr = [
   UpcommingEventsList(),
