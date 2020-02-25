@@ -5,6 +5,12 @@ import 'package:flutter/material.dart';
 int screen = 0;
 int MAX_PAGES = 2;
 
+//Color PRIMARY_COLOR = Color(Material);
+// Color SECONDARY_COLOR = COLOR();
+ThemeData defaultTheme = new ThemeData(
+  primaryColor: Colors.red,
+  accentColor: Colors.greenAccent,
+);
 List<Widget> layoutWidgetArr = [
   UpcommingEventsList(),
   SettingsLayout(),
