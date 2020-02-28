@@ -19,3 +19,4 @@ List<Widget> layoutWidgetArr = [
 ];
 String user = "Sign in";
 String uid = "8buhsULwXsUrgsmYbIjlQyKwWOH3";
+var isFollowing = ["orginizations/PMLryvlhXM7GJwUNbb38"];

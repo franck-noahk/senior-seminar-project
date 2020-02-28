@@ -23,28 +23,34 @@ class _UpcommingEventsListState extends State<UpcommingEventsList> {
             'event_time',
             descending: true,
           )
-          .where("users/" + uid + ".following",
-              arrayContains: "orginaztions/PMLryvlhXM7GJwUNbb38")
           .snapshots(),
       builder: (BuildContext context, snapshot) {
-        if (!snapshot.hasData) return const Text('Loading...');
-        final int messageCount = snapshot.data.documents.length;
-        return ListView.builder(
-            itemCount: messageCount,
-            itemBuilder: (_, int index) {
-              final DocumentSnapshot document = snapshot.data.documents[index];
-              final dynamic message = document['name'];
-              return Card(
-                elevation: 2.0,
-                child: ListTile(
-                  title: Text(
-                    message != null
-                        ? message.toString()
-                        : '<No message retrieved>',
+        if (!snapshot.hasData && snapshot.connectionState.index == 2)
+          return Center(child: Text('Loading...'));
+        if (!snapshot.hasData && snapshot.connectionState.index == 3)
+          return Center(child: Text('No Events:'));
+        if (snapshot.hasData) {
+          final int messageCount = snapshot.data.documents.length;
+          return ListView.builder(
+              itemCount: messageCount,
+              itemBuilder: (_, int index) {
+                final DocumentSnapshot document =
+                    snapshot.data.documents[index];
+                final dynamic message = document['name'];
+                return Card(
+                  elevation: 2.0,
+                  child: ListTile(
+                    title: Text(
+                      message != null
+                          ? message.toString()
+                          : '<No message retrieved>',
+                    ),
                   ),
-                ),
-              );
-            });
+                );
+              });
+        } else {
+          return Text("Error");
+        }
       },
     );
   }
