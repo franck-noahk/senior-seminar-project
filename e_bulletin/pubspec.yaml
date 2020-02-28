@@ -19,7 +19,7 @@ environment:
 dependencies:
   device_calendar: ^3.0.0+3
   firebase_core: ^0.4.4
-#  cloud_firestore: ^0.13.2+1
+  cloud_firestore: ^0.13.2+1
   flutter:
     sdk: flutter
 
