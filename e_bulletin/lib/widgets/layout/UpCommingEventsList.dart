@@ -36,6 +36,7 @@ class _UpcommingEventsListState extends State<UpcommingEventsList> {
               itemBuilder: (_, int index) {
                 final DocumentSnapshot document =
                     snapshot.data.documents[index];
+                final time = document['time'];
                 final dynamic message = document['name'];
                 return Card(
                   elevation: 2.0,
@@ -45,6 +46,8 @@ class _UpcommingEventsListState extends State<UpcommingEventsList> {
                           ? message.toString()
                           : '<No message retrieved>',
                     ),
+                    subtitle:
+                        Text(time != null ? time.toString() : "no message"),
                   ),
                 );
               });
