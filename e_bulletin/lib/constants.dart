@@ -16,3 +16,4 @@ List<Widget> layoutWidgetArr = [
   UpcommingEventsList(),
   SettingsLayout(),
 ];
+String user="Sign in";

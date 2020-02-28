@@ -51,6 +51,23 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        actions: <Widget>[
+          Container(
+            margin: EdgeInsets.all(10),
+            child: FlatButton(
+              padding: EdgeInsets.all(8),
+              textColor: Colors.white,
+              color: Colors.red[700],
+              child: Text(
+                user,
+                style: TextStyle(fontSize: 15.0),
+              ),
+              onPressed: () {
+                //TODO: Insert signin settings.
+              },
+            ),
+          ),
+        ],
       ),
       body: layoutWidgetArr[screen],
       bottomNavigationBar: myBottomNavBar,
