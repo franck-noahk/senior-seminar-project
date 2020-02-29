@@ -7,6 +7,8 @@ import 'constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:async';
 
+import 'widgets/pages/SignIn.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -66,7 +68,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 style: TextStyle(fontSize: 15.0),
               ),
               onPressed: () {
-                //TODO: Insert signin settings.
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SignIn()),
+                );
               },
             ),
           ),
