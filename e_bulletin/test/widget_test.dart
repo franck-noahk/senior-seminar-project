@@ -33,11 +33,10 @@ void main() {
 
     final gearIcon = find.byIcon(Icons.settings);
     final calIcon = find.byIcon(Icons.calendar_today);
-
     expect(gearIcon, findsOneWidget);
     expect(calIcon, findsOneWidget);
-    var textFinder = find.byType(Text);
-    expect(textFinder, findsNWidgets(3));
+    var textFinder = find.byType(BottomNavigationBarItem);
+    expect(textFinder, findsWidgets);
 
     await tester.tap(gearIcon);
     await tester.pump();
@@ -47,6 +46,6 @@ void main() {
     await tester.tap(calIcon);
     await tester.pump();
     textFinder = find.byType(Text);
-    expect(textFinder, findsNWidgets(3));
+    expect(textFinder, findsWidgets);
   });
 }
