@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "320382771706",
+    "firebase_url": "https://senior-seminar-project-dev.firebaseio.com",
+    "project_id": "senior-seminar-project-dev",
+    "storage_bucket": "senior-seminar-project-dev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:320382771706:android:ceb69aa734f02b01c80443",
+        "android_client_info": {
+          "package_name": "com.e_bulliten"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "320382771706-lipak95f0r3s72s1uha5rsdg7jakse0u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaMClUHbNssHpo8O9jLhcL0M2-gfV1O5s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "320382771706-lipak95f0r3s72s1uha5rsdg7jakse0u.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "320382771706-srfhcse8uo9ubmor55cj3di7ai7tfjd1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.eBulleten"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
