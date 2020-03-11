@@ -51,8 +51,8 @@ class SignIn extends StatelessWidget {
                 RaisedButton(
                   child: Text("Submit"),
                   color: Colors.red[700],
-                  onPressed: () {
-                    trySignIn(userName, password);
+                  onPressed: () async {
+                    await trySignIn(userName, password);
                   },
                 ),
               ],
@@ -64,4 +64,12 @@ class SignIn extends StatelessWidget {
   }
 }
 
-void trySignIn(String userName, String password) {}
+void trySignIn(String userName, String password) async {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  try {
+    await _auth.signInWithEmailAndPassword(email: userName, password: password);
+  } catch (e) {
+    //TODO: Handle some way to print error
+  }
+  //TODO: return user back to prvious page
+}
