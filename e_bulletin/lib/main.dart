@@ -78,6 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       body: layoutWidgetArr[screen],
+      // body:Center(child: Text("HELLO"),),
       bottomNavigationBar: myBottomNavBar,
     );
   }
