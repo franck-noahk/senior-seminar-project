@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:e_bulletin/models/user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class FStoredb {}
@@ -16,6 +17,7 @@ class AuthService {
   }
 
  
+  //signin in with email
   Future signInEmail(String email, String password) async {
     try {
       AuthResult result = await _auth.signInWithEmailAndPassword(
