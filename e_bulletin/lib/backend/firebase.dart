@@ -6,8 +6,12 @@ class FStoredb {}
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  //signin in with email
+// Create user obj based on firebaseUser
+  User _userFromFirebaseUser(FirebaseUser user) {
+    return user != null ? User(uid: user.uid) : null;
+  }
 
+ 
   Future signInEmail(String email, String password) async {
     try {
       AuthResult result = await _auth.signInWithEmailAndPassword(
