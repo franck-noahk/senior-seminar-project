@@ -1,14 +1,18 @@
+import 'package:e_bulletin/backend/firebase.dart';
+import 'package:e_bulletin/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
+AuthService _authS = AuthService();
 
 class SignIn extends StatelessWidget {
   const SignIn({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final FirebaseAuth _auth = FirebaseAuth.instance;
     String userName = "";
     String password = "";
+
     return Scaffold(
       appBar: AppBar(
           // actions: <Widget>[
@@ -52,7 +56,7 @@ class SignIn extends StatelessWidget {
                   child: Text("Submit"),
                   color: Colors.red[700],
                   onPressed: () async {
-                    await trySignIn(userName, password);
+                    await trySignIn(userName, password, context);
                   },
                 ),
               ],
@@ -64,12 +68,19 @@ class SignIn extends StatelessWidget {
   }
 }
 
-void trySignIn(String userName, String password) async {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-  try {
-    await _auth.signInWithEmailAndPassword(email: userName, password: password);
-  } catch (e) {
-    //TODO: Handle some way to print error
+Future<void> trySignIn(
+  String userName,
+  String password,
+  BuildContext context,
+) async {
+  dynamic result = await _authS.signInEmail(userName, password);
+
+  if (result == null) {
+    print("error signing in");
+  } else {
+    print("signed in");
+    print(result.toString());
   }
-  //TODO: return user back to prvious page
+
+  // Navigator.pop(context);
 }
