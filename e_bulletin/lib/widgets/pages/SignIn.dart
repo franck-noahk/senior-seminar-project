@@ -79,7 +79,7 @@ Future<void> trySignIn(
     print("error signing in");
   } else {
     print("signed in");
-    print(result.toString());
+    print(result.uid);
   }
 
   // Navigator.pop(context);
