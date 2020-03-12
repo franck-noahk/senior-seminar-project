@@ -23,7 +23,7 @@ class AuthService {
         password: password,
       );
       FirebaseUser user = result.user;
-      return user;
+      return _userFromFirebaseUser(user);
     } catch (e) {
       print(e.toString());
       return null;
