@@ -49,6 +49,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<User>(context);
+
     Widget myBottomNavBar = BottomNavigationBar(
       currentIndex: screen,
       items: [
@@ -67,6 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
         });
       },
     );
+
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
