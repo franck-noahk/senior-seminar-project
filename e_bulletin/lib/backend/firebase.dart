@@ -11,12 +11,12 @@ class AuthService {
   User _userFromFirebaseUser(FirebaseUser user) {
     return user != null ? User(uid: user.uid) : null;
   }
- //onChange stream
+
+  //onChange stream
   Stream<User> get user {
     return _auth.onAuthStateChanged.map(_userFromFirebaseUser);
   }
 
- 
   //signin in with email
   Future signInEmail(String email, String password) async {
     try {
@@ -33,7 +33,11 @@ class AuthService {
   }
 
   //sign out
-
+  Future signOut() async {
+    try {
+      await _auth.signOut();
+    } catch (e) {}
+  }
   //register with email & password
 
 }
