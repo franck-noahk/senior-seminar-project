@@ -23,12 +23,34 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamProvider<User>.value(
       value: AuthService().user,
-      child: MaterialApp(
+      child: Wrapper(),
+    );
+  }
+}
+
+class Wrapper extends StatelessWidget {
+  const Wrapper({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    var user = Provider.of<User>(context);
+    print(user);
+    if (user != null) {
+      return MaterialApp(
         title: 'E-Bulletin',
         theme: defaultTheme,
-        home: MyHomePage(title: 'E-Bulliten', prompt: user),
-      ),
-    );
+        home: MyHomePage(title: 'E-Bulliten', prompt: "SignOut"),
+      );
+    } else {
+      print(user);
+      return MaterialApp(
+        title: 'E-Bulletin Sign in Page',
+        theme: defaultTheme,
+        home: SignIn(),
+      );
+    }
   }
 }
 
@@ -50,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
-
+    AuthService _auth = new AuthService();
     Widget myBottomNavBar = BottomNavigationBar(
       currentIndex: screen,
       items: [
@@ -85,10 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 style: TextStyle(fontSize: 15.0),
               ),
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SignIn()),
-                );
+                _auth.signOut();
               },
             ),
           ),
