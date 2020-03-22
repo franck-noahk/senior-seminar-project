@@ -10,6 +10,8 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
+    String email = "";
+    String password = '';
     return Scaffold(
       appBar: AppBar(
         title: Text("E-Bulliten Register New User"),
@@ -35,7 +37,27 @@ class _RegisterPageState extends State<RegisterPage> {
       ),
       body: Container(
           child: Column(
-        children: <Widget>[],
+        children: <Widget>[
+          Form(
+              child: Column(
+            children: <Widget>[
+              TextFormField(
+                autofocus: true,
+                maxLines: 1,
+                decoration: InputDecoration(hintText: "Email"),
+                onChanged: (val) => setState(() => email = val),
+                validator: (value) => isValidEmail(value),
+              ),
+              TextFormField(
+                autofocus: true,
+                maxLines: 1,
+                obscureText: true,
+                decoration: InputDecoration(hintText: "Password"),
+                onChanged: (val) => setState(() => password = val),
+              ),
+            ],
+          ))
+        ],
       )),
     );
   }
@@ -43,13 +65,16 @@ class _RegisterPageState extends State<RegisterPage> {
 
 isValidEmail(String value) {
   if (value.isEmpty) {
-    return "Please Fill out this field.";
+    String fillOut =  "Please fill out email field.";
+    return fillOut;
   }
   if (!value.contains('@') ||
-      (value.contains('.com') ||
+      !(value.contains('.com') ||
           value.contains('.net') ||
+          value.contains('.org') ||
           value.contains('.edu'))) {
-    return "Please enter a valid email address.";
+    String valid = "Please enter a valid email address.";
+    return valid;
   }
 
   return null;
