@@ -1,5 +1,6 @@
 import 'package:e_bulletin/backend/firebase.dart';
 import 'package:e_bulletin/constants.dart';
+import 'package:e_bulletin/widgets/pages/register.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -16,7 +17,29 @@ class SignIn extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("E-Bulliten Sign-in"),
-        backgroundColor: Colors.red[700],
+        backgroundColor: Colors.red,
+        actions: <Widget>[
+          Container(
+            margin: EdgeInsets.all(10),
+            child: FlatButton(
+              color: Colors.red[700],
+              textColor: Colors.white,
+              child: Row(
+                children: [
+                  Icon(Icons.person),
+                  Text("Register"),
+                ],
+              ),
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => RegisterPage(),
+                  ),
+                );
+              },
+            ),
+          )
+        ],
       ),
       body: Center(
         child: Form(
@@ -47,7 +70,7 @@ class SignIn extends StatelessWidget {
                   obscureText: true,
                 ),
                 RaisedButton(
-                  child: Text("Submit"),
+                  child: Text("Sign-in"),
                   color: Colors.red[700],
                   onPressed: () async {
                     await trySignIn(userName, password, context);

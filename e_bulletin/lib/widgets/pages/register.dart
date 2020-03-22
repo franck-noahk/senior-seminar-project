@@ -13,13 +13,23 @@ class _RegisterPageState extends State<RegisterPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("E-Bulliten Register New User"),
-        backgroundColor: Colors.red[700],
+        backgroundColor: Colors.red,
         actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.person),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
+          Container(
+            margin: EdgeInsets.all(10),
+            child: FlatButton(
+              color: Colors.red[700],
+              textColor: Colors.white,
+              child: Row(
+                children: [
+                  Icon(Icons.person),
+                  Text("Sing-in"),
+                ],
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
           )
         ],
       ),
