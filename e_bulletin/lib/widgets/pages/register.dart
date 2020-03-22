@@ -40,3 +40,17 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 }
+
+isValidEmail(String value) {
+  if (value.isEmpty) {
+    return "Please Fill out this field.";
+  }
+  if (!value.contains('@') ||
+      (value.contains('.com') ||
+          value.contains('.net') ||
+          value.contains('.edu'))) {
+    return "Please enter a valid email address.";
+  }
+
+  return null;
+}
