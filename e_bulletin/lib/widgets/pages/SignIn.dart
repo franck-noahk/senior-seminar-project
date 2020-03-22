@@ -15,15 +15,9 @@ class SignIn extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-          // actions: <Widget>[
-          //   BackButton(
-          //     color: Colors.black,
-          //     onPressed: () {
-          //       Navigator.pop(context);
-          //     },
-          //   )
-          // ],
-          ),
+        title: Text("E-Bulliten Sign-in"),
+        backgroundColor: Colors.red[700],
+      ),
       body: Center(
         child: Form(
           child: Container(
