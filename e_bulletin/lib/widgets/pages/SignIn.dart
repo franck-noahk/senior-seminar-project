@@ -72,9 +72,7 @@ class SignIn extends StatelessWidget {
                     password = changes;
                   },
                   obscureText: true,
-                  validator: (value) => (value.length < 6)
-                      ? "Please enter a longer password"
-                      : null,
+                  
                 ),
                 RaisedButton(
                   child: Text("Sign-in"),
