@@ -14,6 +14,8 @@ class SignIn extends StatelessWidget {
     String userName = "";
     String password = "";
 
+    final _formKey = GlobalKey<FormState>();
+
     return Scaffold(
       appBar: AppBar(
         title: Text("E-Bulliten Sign-in"),
@@ -43,6 +45,7 @@ class SignIn extends StatelessWidget {
       ),
       body: Center(
         child: Form(
+          key: _formKey,
           child: Container(
             margin: EdgeInsets.all(24),
             child: Column(
@@ -58,6 +61,7 @@ class SignIn extends StatelessWidget {
                   onChanged: (String changes) {
                     userName = changes;
                   },
+                  validator: (value) => isValidEmail(value),
                 ),
                 TextFormField(
                   maxLines: 1,
@@ -68,12 +72,16 @@ class SignIn extends StatelessWidget {
                     password = changes;
                   },
                   obscureText: true,
+                  validator: (value) => (value.length < 6)
+                      ? "Please enter a longer password"
+                      : null,
                 ),
                 RaisedButton(
                   child: Text("Sign-in"),
                   color: Colors.red[700],
                   onPressed: () async {
-                    await trySignIn(userName, password, context);
+                    if (_formKey.currentState.validate())
+                      await trySignIn(userName, password, context);
                   },
                 ),
               ],
