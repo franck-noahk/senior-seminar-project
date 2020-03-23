@@ -62,3 +62,8 @@ workflows:
       - html_deploy:
           requires:
             - html_test
+          filters:
+            branches:
+              only:
+                - Development
+                - master
