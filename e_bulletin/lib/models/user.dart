@@ -1,4 +1,8 @@
 class User {
   final String uid;
-  User({this.uid});
+  String email;
+  bool isAdmin;
+  String name;
+
+  User({this.uid}) {}
 }

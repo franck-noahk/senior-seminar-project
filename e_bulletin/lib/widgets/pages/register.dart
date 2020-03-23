@@ -1,3 +1,4 @@
+import 'package:e_bulletin/backend/firebase.dart';
 import 'package:flutter/material.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -13,6 +14,7 @@ class _RegisterPageState extends State<RegisterPage> {
     String email = "";
     String password = '';
     final _formKey = GlobalKey<FormState>();
+    AuthService _auth = new AuthService();
     return Scaffold(
         appBar: AppBar(
           title: Text("Register New User"),
@@ -64,9 +66,12 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   RaisedButton(
                     color: Colors.red[700],
-                    onPressed: () {
+                    onPressed: () async {
                       if (_formKey.currentState.validate()) {
-                        //TODO: Invoke signing.
+                        dynamic result = await _auth.signUpEmail(
+                          email,
+                          password,
+                        );
                       }
                     },
                     child: Text("Register"),
