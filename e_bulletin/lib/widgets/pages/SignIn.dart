@@ -101,3 +101,21 @@ Future<void> trySignIn(
 
   // Navigator.pop(context);
 }
+
+isValidEmail(String value) {
+  if (value.isEmpty) {
+    String fillOut = "Please fill out email field.";
+    return fillOut;
+  }
+  if (!value.contains('@') ||
+      !(value.contains('.com') ||
+          value.contains('.net') ||
+          value.contains('.org') ||
+          value.contains('.edu')) ||
+      value.contains(" ")) {
+    String valid = "Please enter a valid email address.";
+    return valid;
+  }
+
+  return null;
+}
