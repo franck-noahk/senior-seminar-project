@@ -62,7 +62,8 @@ class _RegisterPageState extends State<RegisterPage> {
                         ? "Please enter a longer password"
                         : null,
                   ),
-                  FlatButton(
+                  RaisedButton(
+                    color: Colors.red[700],
                     onPressed: () {
                       if (_formKey.currentState.validate()) {
                         //TODO: Invoke signing.
