@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:e_bulletin/widgets/pages/register.dart';
 
 void main() {
-  test("Testing Valid email", () {
+  test("Testing Valid email in Register", () {
     List<String> goodEmail = new List<String>();
     goodEmail.add("test@test.com");
     goodEmail.add("test@test.net");

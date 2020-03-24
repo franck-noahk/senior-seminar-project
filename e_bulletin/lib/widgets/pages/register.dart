@@ -51,7 +51,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     autofocus: true,
                     maxLines: 1,
                     decoration: InputDecoration(hintText: "Email"),
-                    onChanged: (val) => setState(() => email = val),
+                    onChanged: (val) => email = val,
                     validator: (value) => isValidEmail(value),
                   ),
                   TextFormField(
@@ -59,7 +59,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     maxLines: 1,
                     obscureText: true,
                     decoration: InputDecoration(hintText: "Password"),
-                    onChanged: (val) => setState(() => password = val),
+                    onChanged: (val) => password = val,
                     validator: (val) => (val.length < 6)
                         ? "Please enter a longer password"
                         : null,
@@ -72,6 +72,9 @@ class _RegisterPageState extends State<RegisterPage> {
                           email,
                           password,
                         );
+                        if (result != null) {
+                          Navigator.pop(context);
+                        }
                       }
                     },
                     child: Text("Register"),

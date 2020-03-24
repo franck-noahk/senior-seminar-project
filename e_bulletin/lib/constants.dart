@@ -18,7 +18,6 @@ List<Widget> layoutWidgetArr = [
   UpcommingEventsList(),
   SettingsLayout(),
 ];
-String user = "Sign In";
 String uid = "8buhsULwXsUrgsmYbIjlQyKwWOH3";
 var isFollowing = ["orginizations/PMLryvlhXM7GJwUNbb38"];
 // FirebaseUser currentUser;
