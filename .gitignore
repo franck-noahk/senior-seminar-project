@@ -64,3 +64,4 @@ node_modules/
 # dotenv environment variables file
 .env
 e_bulletin/android/.settings/org.eclipse.buildship.core.prefs
+e_bulletin/pubspec.lock
