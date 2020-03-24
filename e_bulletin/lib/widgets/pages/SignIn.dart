@@ -1,5 +1,6 @@
 import 'package:e_bulletin/backend/firebase.dart';
 import 'package:e_bulletin/constants.dart';
+import 'package:e_bulletin/widgets/layout/loading.dart';
 import 'package:e_bulletin/widgets/pages/register.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -7,108 +8,108 @@ import 'package:flutter/services.dart';
 
 AuthService _authS = AuthService();
 
-class SignIn extends StatelessWidget {
+class SignIn extends StatefulWidget {
   const SignIn({Key key}) : super(key: key);
 
+  @override
+  _SignInState createState() => _SignInState();
+}
+
+class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
     String userName = "";
     String password = "";
+    bool isLoading = false;
 
     final _formKey = GlobalKey<FormState>();
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("E-Bulliten Sign-in"),
-        backgroundColor: Colors.red,
-        actions: <Widget>[
-          Container(
-            margin: EdgeInsets.all(10),
-            child: FlatButton(
-              color: Colors.red[700],
-              textColor: Colors.white,
-              child: Row(
-                children: [
-                  Icon(Icons.person),
-                  Text("Register"),
-                ],
-              ),
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => RegisterPage(),
+    return (isLoading)
+        ? Loading()
+        : Scaffold(
+            appBar: AppBar(
+              title: Text("E-Bulliten Sign-in"),
+              backgroundColor: Colors.red,
+              actions: <Widget>[
+                Container(
+                  margin: EdgeInsets.all(10),
+                  child: FlatButton(
+                    color: Colors.red[700],
+                    textColor: Colors.white,
+                    child: Row(
+                      children: [
+                        Icon(Icons.person),
+                        Text("Register"),
+                      ],
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => RegisterPage(),
+                        ),
+                      );
+                    },
                   ),
-                );
-              },
-            ),
-          )
-        ],
-      ),
-      body: Center(
-        child: Form(
-          key: _formKey,
-          child: Container(
-            margin: EdgeInsets.all(24),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                TextFormField(
-                  autofocus: true,
-                  maxLines: 1,
-                  decoration: InputDecoration(
-                    hintText: "E-Mail",
-                  ),
-                  onChanged: (String changes) {
-                    userName = changes;
-                  },
-                  validator: (value) => isValidEmail(value),
-                ),
-                TextFormField(
-                  maxLines: 1,
-                  decoration: InputDecoration(
-                    hintText: "Password",
-                  ),
-                  onChanged: (String changes) {
-                    password = changes;
-                  },
-                  obscureText: true,
-                ),
-                RaisedButton(
-                  child: Text("Sign-in"),
-                  color: Colors.red[700],
-                  onPressed: () async {
-                    if (_formKey.currentState.validate())
-                      await trySignIn(userName, password, context);
-                  },
-                ),
+                )
               ],
             ),
-          ),
-        ),
-      ),
-    );
+            body: Center(
+              child: Form(
+                key: _formKey,
+                child: Container(
+                  margin: EdgeInsets.all(24),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      TextFormField(
+                        autofocus: true,
+                        maxLines: 1,
+                        decoration: InputDecoration(
+                          hintText: "E-Mail",
+                        ),
+                        onChanged: (String changes) {
+                          userName = changes;
+                        },
+                        validator: (value) => isValidEmail(value),
+                      ),
+                      TextFormField(
+                        maxLines: 1,
+                        decoration: InputDecoration(
+                          hintText: "Password",
+                        ),
+                        onChanged: (String changes) {
+                          password = changes;
+                        },
+                        obscureText: true,
+                      ),
+                      RaisedButton(
+                        child: Text("Sign-in"),
+                        color: Colors.red[700],
+                        onPressed: () async {
+                          if (_formKey.currentState.validate()) {
+                            setState(() {
+                              isLoading = true;
+                            });
+                            dynamic result =
+                                await _authS.signInEmail(userName, password);
+                            if (result == null)
+                              setState(() {
+                                isLoading = false;
+                              });
+                          }
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          );
   }
-}
-
-Future<void> trySignIn(
-  String userName,
-  String password,
-  BuildContext context,
-) async {
-  dynamic result = await _authS.signInEmail(userName, password);
-
-  if (result == null) {
-    print("error signing in");
-  } else {
-    print("signed in");
-    print(result.uid);
-  }
-
-  // Navigator.pop(context);
 }
 
 isValidEmail(String value) {
