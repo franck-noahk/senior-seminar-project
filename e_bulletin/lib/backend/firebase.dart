@@ -1,20 +1,34 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_bulletin/models/user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class FStoredb {}
+class FStoredb {
+  final String uid;
+  FStoredb({this.uid});
+  final CollectionReference users = Firestore.instance.collection('users');
+
+  Future<dynamic> getData() async {
+    return await users.document(uid).get();
+  }
+}
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
 // Create user obj based on firebaseUser
   User _userFromFirebaseUser(FirebaseUser user) {
-    return user != null ? User(uid: user.uid) : null;
+    return (user != null) ? User(uid: user.uid) : null;
   }
 
   //onChange stream
   Stream<User> get user {
-    return _auth.onAuthStateChanged.map(_userFromFirebaseUser);
+    Stream<User> toReturn = _auth.onAuthStateChanged.map(_userFromFirebaseUser);
+    toReturn.forEach((element) async {
+      await element.getDataDb();
+    });
+    return toReturn;
   }
 
   //signin in with email
@@ -25,7 +39,12 @@ class AuthService {
         password: password,
       );
       FirebaseUser user = result.user;
-      return _userFromFirebaseUser(user);
+      User toReturn = _userFromFirebaseUser(user);
+      if (toReturn != null) {
+        // sleep(Duration(seconds: 3));
+        await toReturn.getDataDb();
+      }
+      return toReturn;
     } catch (e) {
       print(e.toString());
       return null;
@@ -38,6 +57,7 @@ class AuthService {
       await _auth.signOut();
     } catch (e) {}
   }
+
   //register with email & password
   Future signUpEmail(String email, String password) async {
     try {
@@ -46,7 +66,12 @@ class AuthService {
         password: password,
       );
       FirebaseUser user = result.user;
-      return _userFromFirebaseUser(user);
+      User toReturn = _userFromFirebaseUser(user);
+      if (toReturn != null) {
+        sleep(Duration(seconds: 5));
+        toReturn.getDataDb();
+      }
+      return toReturn;
     } catch (err) {
       print(err);
     }
