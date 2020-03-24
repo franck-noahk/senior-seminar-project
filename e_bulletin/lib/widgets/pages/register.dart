@@ -14,6 +14,7 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     String email = "";
     String password = '';
+    String passwordConfirm = "";
     final _formKey = GlobalKey<FormState>();
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
@@ -68,6 +69,20 @@ class _RegisterPageState extends State<RegisterPage> {
                     validator: (val) => (val.length < 6)
                         ? "Please enter a longer password"
                         : null,
+                  ),
+                  TextFormField(
+                    autofocus: true,
+                    maxLines: 1,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      hintText: "Password Confirmation",
+                    ),
+                    onChanged: (val) => passwordConfirm = val,
+                    validator: (val) => (val.length < 6)
+                        ? "Please enter a longer password"
+                        : (val != password)
+                            ? "Please Make sure the passwords Match"
+                            : null,
                   ),
                   RaisedButton(
                     color: Colors.red[700],
