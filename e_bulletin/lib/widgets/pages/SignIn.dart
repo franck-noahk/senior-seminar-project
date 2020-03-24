@@ -3,6 +3,7 @@ import 'package:e_bulletin/constants.dart';
 import 'package:e_bulletin/widgets/pages/register.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/services.dart';
 
 AuthService _authS = AuthService();
 
@@ -15,7 +16,10 @@ class SignIn extends StatelessWidget {
     String password = "";
 
     final _formKey = GlobalKey<FormState>();
-
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return Scaffold(
       appBar: AppBar(
         title: Text("E-Bulliten Sign-in"),
@@ -72,7 +76,6 @@ class SignIn extends StatelessWidget {
                     password = changes;
                   },
                   obscureText: true,
-                  
                 ),
                 RaisedButton(
                   child: Text("Sign-in"),

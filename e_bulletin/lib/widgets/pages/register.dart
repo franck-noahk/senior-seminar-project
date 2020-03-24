@@ -1,5 +1,6 @@
 import 'package:e_bulletin/backend/firebase.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class RegisterPage extends StatefulWidget {
   RegisterPage({Key key}) : super(key: key);
@@ -14,6 +15,10 @@ class _RegisterPageState extends State<RegisterPage> {
     String email = "";
     String password = '';
     final _formKey = GlobalKey<FormState>();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     AuthService _auth = new AuthService();
     return Scaffold(
         appBar: AppBar(
