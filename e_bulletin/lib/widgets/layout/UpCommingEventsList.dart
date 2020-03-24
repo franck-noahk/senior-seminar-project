@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:e_bulletin/widgets/layout/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:e_bulletin/constants.dart';
 
@@ -52,7 +53,7 @@ class _UpcommingEventsListState extends State<UpcommingEventsList> {
                 );
               });
         } else {
-          return Text("Error");
+          return Loading();
         }
       },
     );
