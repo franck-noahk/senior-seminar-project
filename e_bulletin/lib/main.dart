@@ -42,7 +42,10 @@ class Wrapper extends StatelessWidget {
         child: MaterialApp(
           title: 'E-Bulletin',
           theme: defaultTheme,
-          home: MyHomePage(title: 'E-Bulliten', prompt: "SignOut"),
+          home: MyHomePage(
+            title: 'E-Bulliten',
+            prompt: "SignOut",
+          ),
         ),
       );
     } else {

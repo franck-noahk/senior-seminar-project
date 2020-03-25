@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_bulletin/widgets/layout/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:e_bulletin/constants.dart';
+import 'package:timeago/timeago.dart' as timeago;
+import 'package:jiffy/jiffy.dart';
 
 class UpcommingEventsList extends StatefulWidget {
   const UpcommingEventsList({
@@ -16,29 +18,36 @@ class _UpcommingEventsListState extends State<UpcommingEventsList> {
   @override
   Widget build(BuildContext context) {
     // return TestCards();
-
+    DateTime now = new DateTime.now();
+    // now = "Timestamp(seconds=" + now + ",nanoseconds=0)";
     return StreamBuilder(
       stream: Firestore.instance
           .collection('events')
+          // .where(
+          //   "event_time",
+          //   isGreaterThan: DateTime.now().toUtc().millisecondsSinceEpoch,
+          // )
           .where(
-            "event_time",
-            isGreaterThan: new DateTime.now().millisecondsSinceEpoch,
+            'event_time',
+            isGreaterThan: now,
           )
+          .orderBy("event_time", descending: false)
           .snapshots(),
       builder: (BuildContext context, snapshot) {
         if (snapshot.hasData) {
-          final int messageCount = snapshot.data.documents.length;
+          int messageCount = snapshot.data.documents.length;
           if (messageCount == 0) {
             return Center(
               child: Text("No Upcomming Events"),
             );
-          } else
+          } else {
             return ListView.builder(
                 itemCount: messageCount,
                 itemBuilder: (_, int index) {
                   final DocumentSnapshot document =
                       snapshot.data.documents[index];
-                  final time = document['time'];
+                  dynamic time = (document['event_time'].toDate());
+
                   final dynamic message = document['name'];
                   return Card(
                     elevation: 2.0,
@@ -48,11 +57,13 @@ class _UpcommingEventsListState extends State<UpcommingEventsList> {
                             ? message.toString()
                             : '<No message retrieved>',
                       ),
-                      subtitle:
-                          Text(time != null ? time.toString() : "no message"),
+                      subtitle: Text(time != null
+                          ? Jiffy(time).yMMMMEEEEdjm
+                          : "no message"),
                     ),
                   );
                 });
+          }
         } else {
           return Loading();
         }

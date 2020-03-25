@@ -24,6 +24,8 @@ dependencies:
   firebase_auth: 0.15.3
   provider: 3.1.0
   flutter_spinkit: "^4.1.2"
+  timeago: ^2.0.26
+  jiffy: ^3.0.1
   flutter:
     sdk: flutter
 
