@@ -36,7 +36,6 @@ class Wrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var user = Provider.of<User>(context);
-    print(user);
     if (user != null) {
       return MaterialApp(
         title: 'E-Bulletin',
@@ -44,7 +43,6 @@ class Wrapper extends StatelessWidget {
         home: MyHomePage(title: 'E-Bulliten', prompt: "SignOut"),
       );
     } else {
-      print(user);
       return MaterialApp(
         title: 'E-Bulletin Sign in Page',
         theme: defaultTheme,
