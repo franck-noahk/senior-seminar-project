@@ -16,7 +16,7 @@ class _SettingsLayoutState extends State<SettingsLayout> {
     return Center(
       key: Key("TESTING"),
       child: Text(
-        (user.email == null) ? "it is null" : user.email,
+        (user.email == null) ? "email is null" : user.email,
       ),
     );
   }
