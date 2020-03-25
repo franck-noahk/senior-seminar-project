@@ -37,10 +37,13 @@ class Wrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     var user = Provider.of<User>(context);
     if (user != null) {
-      return MaterialApp(
-        title: 'E-Bulletin',
-        theme: defaultTheme,
-        home: MyHomePage(title: 'E-Bulliten', prompt: "SignOut"),
+      return StreamProvider<DocumentSnapshot>.value(
+        value: Provider.of<User>(context).db.document,
+        child: MaterialApp(
+          title: 'E-Bulletin',
+          theme: defaultTheme,
+          home: MyHomePage(title: 'E-Bulliten', prompt: "SignOut"),
+        ),
       );
     } else {
       return MaterialApp(

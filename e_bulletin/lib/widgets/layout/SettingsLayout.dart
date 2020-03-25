@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_bulletin/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -13,11 +14,12 @@ class _SettingsLayoutState extends State<SettingsLayout> {
   @override
   Widget build(BuildContext context) {
     var user = Provider.of<User>(context);
+    var data = Provider.of<DocumentSnapshot>(context);
     return Center(
       key: Key("TESTING"),
       child: Text(
-        (user.email == null) ? "email is null" : user.email,
-      ),
+          // (data.data['email'] == null) ? "email is null" : user.email,
+          data.data['email']),
     );
   }
 }

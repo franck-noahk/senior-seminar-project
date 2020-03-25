@@ -12,6 +12,11 @@ class FStoredb {
   Future<dynamic> getData() async {
     return await users.document(uid).get();
   }
+
+  Stream<DocumentSnapshot> get document {
+    Stream<DocumentSnapshot> toReturn = users.document(uid).get().asStream();
+    return toReturn;
+  }
 }
 
 class AuthService {
