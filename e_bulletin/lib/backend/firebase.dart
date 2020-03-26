@@ -9,8 +9,38 @@ class FStoredb {
   FStoredb({this.uid});
   final CollectionReference users = Firestore.instance.collection('users');
 
-  Future<dynamic> getData() async {
+  Future<DocumentSnapshot> getData() async {
     return await users.document(uid).get();
+  }
+
+  Future<void> addFollower(String follower) async {
+    print("Made it to firebase add follower");
+    try {
+      DocumentSnapshot currentData = await getData();
+      List<dynamic> currentList = currentData.data['isFollowing'];
+      print(currentData);
+      print(currentList.toString());
+      if (currentList != null) {
+        currentList.add(follower);
+      }
+      await users.document(uid).setData({
+        'isFollowing': currentList,
+      }, merge: true);
+    } catch (err) {
+      print(err);
+    }
+  }
+
+  Future<void> removeFollower(String follower) async {
+    DocumentReference location = await users.document(uid);
+    var locationData = await users.document(uid).get();
+    int index = 0;
+    List<dynamic> toUpdate = new List<dynamic>();
+    for (var i = 0; i < locationData.data['isFollowing'].length; i++) {
+      if (locationData.data['isFollowing'][i] != follower)
+        toUpdate.add(locationData.data['isFollowing'][i]);
+    }
+    await location.setData({'isFollowing': toUpdate}, merge: true);
   }
 
   Stream<DocumentSnapshot> get document {

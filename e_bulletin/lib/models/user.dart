@@ -29,4 +29,21 @@ class User {
       print(e);
     }
   }
+
+  Future<void> addFollower(String followerUID) async {
+    try {
+      print("Called User Add Follower ");
+      await this.db.addFollower(followerUID);
+    } catch (e) {
+      print("\n\n" + e);
+    }
+  }
+
+  Future<void> removeFollower(String followerUID) async {
+    try {
+      await this.db.removeFollower(followerUID);
+    } catch (e) {
+      print("\n\n" + e.toString());
+    }
+  }
 }

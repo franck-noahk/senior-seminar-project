@@ -33,7 +33,7 @@ class Wrapper extends StatelessWidget {
     var user = Provider.of<User>(context);
     if (user != null) {
       return StreamProvider<DocumentSnapshot>.value(
-        value: Provider.of<User>(context).db.document,
+        value: user.db.document,
         child: MaterialApp(
           title: 'E-Bulletin',
           theme: defaultTheme,
