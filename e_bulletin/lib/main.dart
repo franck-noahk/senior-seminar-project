@@ -1,13 +1,8 @@
-import 'dart:developer';
-
 import 'package:e_bulletin/models/user.dart';
-import 'package:e_bulletin/widgets/layout/UpCommingEventsList.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'backend/firebase.dart';
 import 'constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'dart:async';
 import 'package:provider/provider.dart';
 
 import 'widgets/pages/SignIn.dart';

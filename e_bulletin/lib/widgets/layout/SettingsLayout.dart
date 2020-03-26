@@ -14,12 +14,12 @@ class _SettingsLayoutState extends State<SettingsLayout> {
   @override
   Widget build(BuildContext context) {
     var user = Provider.of<User>(context);
-    var data = Provider.of<DocumentSnapshot>(context);
+    var snapshot = Provider.of<DocumentSnapshot>(context);
     return Center(
       key: Key("TESTING"),
       child: Text(
           // (data.data['email'] == null) ? "email is null" : user.email,
-          data.data['email']),
+          snapshot.data['email']),
     );
   }
 }

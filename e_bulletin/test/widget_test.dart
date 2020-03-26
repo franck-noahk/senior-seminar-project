@@ -6,14 +6,11 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 import 'package:e_bulletin/constants.dart';
-import 'package:e_bulletin/models/user.dart';
-import 'package:e_bulletin/widgets/layout/SettingsLayout.dart';
 import 'package:e_bulletin/widgets/pages/SignIn.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:e_bulletin/main.dart';
-import 'package:provider/provider.dart';
 
 void main() {
   testWidgets('Testing Sign-in Page', (WidgetTester tester) async {

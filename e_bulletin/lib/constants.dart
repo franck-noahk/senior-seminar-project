@@ -1,10 +1,9 @@
 import 'package:e_bulletin/widgets/layout/SettingsLayout.dart';
 import 'package:e_bulletin/widgets/layout/UpCommingEventsList.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 int screen = 0;
-int MAX_PAGES = 2;
+int maxPages = 2;
 
 //Color PRIMARY_COLOR = Color(Material);
 // Color SECONDARY_COLOR = COLOR();

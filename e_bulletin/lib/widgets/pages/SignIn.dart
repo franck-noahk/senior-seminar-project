@@ -1,9 +1,7 @@
 import 'package:e_bulletin/backend/firebase.dart';
-import 'package:e_bulletin/constants.dart';
 import 'package:e_bulletin/widgets/layout/loading.dart';
 import 'package:e_bulletin/widgets/pages/register.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 
 AuthService _authS = AuthService();
