@@ -10,7 +10,6 @@ class SettingsLayout extends StatefulWidget {
   @override
   _SettingsLayoutState createState() => _SettingsLayoutState();
 }
-//TODO: Come up with settings to load & display. Followers and such.
 
 class _SettingsLayoutState extends State<SettingsLayout> {
   @override
@@ -38,6 +37,9 @@ class _SettingsLayoutState extends State<SettingsLayout> {
         return StreamBuilder(
             stream: user.db.document,
             builder: (context, snapshot) {
+              if (!snapshot.hasData) {
+                return Loading();
+              }
               return ListView.builder(
                 itemCount: messageCount,
                 itemBuilder: (_, int index) {
