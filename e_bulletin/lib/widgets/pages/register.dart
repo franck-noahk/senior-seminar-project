@@ -1,35 +1,33 @@
 import 'package:e_bulletin/backend/firebase.dart';
 import 'package:e_bulletin/widgets/layout/loading.dart';
-import 'package:e_bulletin/widgets/pages/register.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-AuthService _authS = AuthService();
-
-class SignIn extends StatefulWidget {
-  const SignIn({Key key}) : super(key: key);
+class RegisterPage extends StatefulWidget {
+  RegisterPage({Key key}) : super(key: key);
 
   @override
-  _SignInState createState() => _SignInState();
+  _RegisterPageState createState() => _RegisterPageState();
 }
 
-class _SignInState extends State<SignIn> {
+class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
-    String userName = "";
-    String password = "";
+    String email = "";
+    String password = '';
+    String passwordConfirm = "";
     bool isLoading = false;
-
     final _formKey = GlobalKey<FormState>();
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
+    AuthService _auth = new AuthService();
     return (isLoading)
         ? Loading()
         : Scaffold(
             appBar: AppBar(
-              title: Text("E-Bulliten Sign-in"),
+              title: Text("Register New User"),
               backgroundColor: Colors.red,
               actions: <Widget>[
                 Container(
@@ -40,15 +38,11 @@ class _SignInState extends State<SignIn> {
                     child: Row(
                       children: [
                         Icon(Icons.person),
-                        Text("Register"),
+                        Text("Sing-in"),
                       ],
                     ),
                     onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => RegisterPage(),
-                        ),
-                      );
+                      Navigator.of(context).pop();
                     },
                   ),
                 )
@@ -66,41 +60,55 @@ class _SignInState extends State<SignIn> {
                       TextFormField(
                         autofocus: true,
                         maxLines: 1,
-                        decoration: InputDecoration(
-                          hintText: "E-Mail",
-                        ),
-                        onChanged: (String changes) {
-                          userName = changes;
-                        },
+                        decoration: InputDecoration(hintText: "Email"),
+                        onChanged: (val) => email = val,
                         validator: (value) => isValidEmail(value),
                       ),
                       TextFormField(
+                        autofocus: true,
                         maxLines: 1,
-                        decoration: InputDecoration(
-                          hintText: "Password",
-                        ),
-                        onChanged: (String changes) {
-                          password = changes;
-                        },
                         obscureText: true,
+                        decoration: InputDecoration(hintText: "Password"),
+                        onChanged: (val) => password = val,
+                        validator: (val) => (val.length < 6)
+                            ? "Please enter a longer password"
+                            : null,
+                      ),
+                      TextFormField(
+                        autofocus: true,
+                        maxLines: 1,
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          hintText: "Password Confirmation",
+                        ),
+                        onChanged: (val) => passwordConfirm = val,
+                        validator: (val) => (val.length < 6)
+                            ? "Please enter a longer password"
+                            : (val != password)
+                                ? "Please Make sure the passwords Match"
+                                : null,
                       ),
                       RaisedButton(
-                        child: Text("Sign-in"),
                         color: Colors.red[700],
                         onPressed: () async {
                           if (_formKey.currentState.validate()) {
                             setState(() {
                               isLoading = true;
                             });
-                            dynamic result =
-                                await _authS.signInEmail(userName, password);
-                            if (result == null)
-                              setState(() {
-                                isLoading = false;
-                              });
+                            dynamic result = await _auth.signUpEmail(
+                              email,
+                              password,
+                            );
+                            if (result != null) {
+                              Navigator.pop(context);
+                            }
+                            setState(() {
+                              isLoading = false;
+                            });
                           }
                         },
-                      ),
+                        child: Text("Register"),
+                      )
                     ],
                   ),
                 ),
