@@ -1,32 +1,67 @@
-import 'dart:developer';
-
-import 'package:e_bulletin/widgets/layout/UpCommingEventsList.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:e_bulletin/models/user.dart';
 import 'package:flutter/material.dart';
+import 'backend/firebase.dart';
 import 'constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'dart:async';
+import 'package:provider/provider.dart';
 
 import 'widgets/pages/SignIn.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  // await getcurrentUser();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'E-Bulletin',
-      theme: defaultTheme,
-      home: MyHomePage(title: 'E-Bulliten'),
+    return StreamProvider<User>.value(
+      value: AuthService().user,
+      child: Wrapper(),
     );
   }
 }
 
+class Wrapper extends StatelessWidget {
+  const Wrapper({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    var user = Provider.of<User>(context);
+    if (user != null) {
+      return StreamProvider<DocumentSnapshot>.value(
+        value: user.db.document,
+        child: MaterialApp(
+          title: 'E-Bulletin',
+          theme: defaultTheme,
+          home: MyHomePage(
+            title: 'E-Bulliten',
+            prompt: "SignOut",
+          ),
+        ),
+      );
+    } else {
+      return MaterialApp(
+        title: 'E-Bulletin Sign in Page',
+        theme: defaultTheme,
+        home: SignIn(),
+      );
+    }
+  }
+}
+
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({
+    Key key,
+    this.title,
+    this.prompt,
+  }) : super(key: key);
 
   final String title;
+  final String prompt;
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -35,6 +70,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<User>(context);
+    AuthService _auth = new AuthService();
     Widget myBottomNavBar = BottomNavigationBar(
       currentIndex: screen,
       items: [
@@ -53,6 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
         });
       },
     );
+
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -64,14 +102,11 @@ class _MyHomePageState extends State<MyHomePage> {
               textColor: Colors.white,
               color: Colors.red[700],
               child: Text(
-                user,
+                widget.prompt,
                 style: TextStyle(fontSize: 15.0),
               ),
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SignIn()),
-                );
+                _auth.signOut();
               },
             ),
           ),

@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:e_bulletin/widgets/layout/loading.dart';
 import 'package:flutter/material.dart';
-import 'package:e_bulletin/constants.dart';
+import 'package:provider/provider.dart';
+import 'package:jiffy/jiffy.dart';
 
 class UpcommingEventsList extends StatefulWidget {
   const UpcommingEventsList({
@@ -15,44 +17,51 @@ class _UpcommingEventsListState extends State<UpcommingEventsList> {
   @override
   Widget build(BuildContext context) {
     // return TestCards();
-
+    DateTime now = new DateTime.now();
+    DocumentSnapshot snapshot = Provider.of<DocumentSnapshot>(context);
+    // now = "Timestamp(seconds=" + now + ",nanoseconds=0)";
     return StreamBuilder(
       stream: Firestore.instance
           .collection('events')
-          .orderBy(
+          .where(
             'event_time',
-            descending: true,
+            isGreaterThan: now,
           )
+          .orderBy("event_time", descending: false)
           .snapshots(),
       builder: (BuildContext context, snapshot) {
-        if (!snapshot.hasData && snapshot.connectionState.index == 2)
-          return Center(child: Text('Loading...'));
-        if (!snapshot.hasData && snapshot.connectionState.index == 3)
-          return Center(child: Text('No Events:'));
         if (snapshot.hasData) {
-          final int messageCount = snapshot.data.documents.length;
-          return ListView.builder(
-              itemCount: messageCount,
-              itemBuilder: (_, int index) {
-                final DocumentSnapshot document =
-                    snapshot.data.documents[index];
-                final time = document['time'];
-                final dynamic message = document['name'];
-                return Card(
-                  elevation: 2.0,
-                  child: ListTile(
-                    title: Text(
-                      message != null
-                          ? message.toString()
-                          : '<No message retrieved>',
+          int messageCount = snapshot.data.documents.length;
+          if (messageCount == 0) {
+            return Center(
+              child: Text("No Upcomming Events"),
+            );
+          } else {
+            return ListView.builder(
+                itemCount: messageCount,
+                itemBuilder: (_, int index) {
+                  final DocumentSnapshot document =
+                      snapshot.data.documents[index];
+                  dynamic time = (document['event_time'].toDate());
+
+                  final dynamic message = document['name'];
+                  return Card(
+                    elevation: 2.0,
+                    child: ListTile(
+                      title: Text(
+                        message != null
+                            ? message.toString()
+                            : '<No message retrieved>',
+                      ),
+                      subtitle: Text(time != null
+                          ? Jiffy(time).yMMMMEEEEdjm
+                          : "no message"),
                     ),
-                    subtitle:
-                        Text(time != null ? time.toString() : "no message"),
-                  ),
-                );
-              });
+                  );
+                });
+          }
         } else {
-          return Text("Error");
+          return Loading();
         }
       },
     );
