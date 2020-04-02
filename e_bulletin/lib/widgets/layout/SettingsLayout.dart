@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:e_bulletin/constants.dart';
 import 'package:e_bulletin/models/user.dart';
 import 'package:e_bulletin/widgets/layout/loading.dart';
 import 'package:flutter/material.dart';
@@ -41,6 +42,7 @@ class _SettingsLayoutState extends State<SettingsLayout> {
                 return Loading();
               }
               return ListView.builder(
+                key: saveMe,
                 itemCount: messageCount,
                 itemBuilder: (_, int index) {
                   DocumentSnapshot document = orgSnapshot.data.documents[index];

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 int screen = 0;
 int maxPages = 2;
-
+GlobalKey saveMe = new GlobalKey();
 //Color PRIMARY_COLOR = Color(Material);
 // Color SECONDARY_COLOR = COLOR();
 ThemeData defaultTheme = new ThemeData(

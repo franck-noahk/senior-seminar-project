@@ -26,6 +26,7 @@ dependencies:
   flutter_spinkit: "^4.1.2"
   timeago: ^2.0.26
   jiffy: ^3.0.1
+  firebase_messaging: 6.0.13
   flutter:
     sdk: flutter
 
