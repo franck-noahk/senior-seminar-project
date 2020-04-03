@@ -19,6 +19,7 @@ exports.addUserToDB = functions.auth.user().onCreate((user) => {
 		uid: user.uid,
 		name: user.displayName,
 		isAdmin: false,
+		isAdminOf: '',
 		isFollowing: [],
 	});
 });
