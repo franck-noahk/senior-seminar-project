@@ -32,15 +32,28 @@ class FStoredb {
   }
 
   Future<void> removeFollower(String follower) async {
-    DocumentReference location = await users.document(uid);
-    var locationData = await users.document(uid).get();
-    int index = 0;
-    List<dynamic> toUpdate = new List<dynamic>();
-    for (var i = 0; i < locationData.data['isFollowing'].length; i++) {
-      if (locationData.data['isFollowing'][i] != follower)
-        toUpdate.add(locationData.data['isFollowing'][i]);
+    try {
+      DocumentReference location = await users.document(uid);
+      var locationData = await users.document(uid).get();
+      int index = 0;
+      List<dynamic> toUpdate = new List<dynamic>();
+      for (var i = 0; i < locationData.data['isFollowing'].length; i++) {
+        if (locationData.data['isFollowing'][i] != follower) {
+          print(locationData.data['isFollowing'][i]);
+          toUpdate.add(locationData.data['isFollowing'][i]);
+        }
+      }
+      if (toUpdate.isNotEmpty)
+        await location
+            .setData({'isFollowing': toUpdate}, merge: true)
+            .then((value) => {print(toUpdate.toString())})
+            .catchError((error) => {print(error)});
+      else {
+        await location.updateData({"isFollowing": []});
+      }
+    } catch (err) {
+      print(err + 'in firebase remove follower');
     }
-    await location.setData({'isFollowing': toUpdate}, merge: true);
   }
 
   Stream<DocumentSnapshot> get document {
