@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_bulletin/constants.dart';
 import 'package:e_bulletin/models/user.dart';
 import 'package:e_bulletin/widgets/layout/loading.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -13,11 +14,11 @@ class SettingsLayout extends StatefulWidget {
 }
 
 class _SettingsLayoutState extends State<SettingsLayout> {
+  FirebaseMessaging fcm = new FirebaseMessaging();
   @override
   Widget build(BuildContext context) {
     var user = Provider.of<User>(context);
     var userData = Provider.of<DocumentSnapshot>(context);
-
     return StreamBuilder(
       stream: Firestore.instance.collection('orginizations').snapshots(),
       builder: (BuildContext context, orgSnapshot) {
@@ -46,7 +47,6 @@ class _SettingsLayoutState extends State<SettingsLayout> {
                 itemCount: messageCount,
                 itemBuilder: (_, int index) {
                   DocumentSnapshot document = orgSnapshot.data.documents[index];
-
                   List<dynamic> data = snapshot.data['isFollowing'];
                   String looking = document['uid'];
                   return Card(
@@ -65,8 +65,10 @@ class _SettingsLayoutState extends State<SettingsLayout> {
                             .toList()
                             .contains(document['uid'])) {
                           await user.removeFollower(document['uid']);
+                          fcm.unsubscribeFromTopic(document['name']);
                         } else {
                           await user.addFollower(document['uid']);
+                          fcm.subscribeToTopic(document['name']);
                         }
                         setState(() {});
                       },
