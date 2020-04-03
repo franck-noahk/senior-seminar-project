@@ -65,10 +65,10 @@ class _SettingsLayoutState extends State<SettingsLayout> {
                             .toList()
                             .contains(document['uid'])) {
                           await user.removeFollower(document['uid']);
-                          fcm.unsubscribeFromTopic(document['name']);
+                          await fcm.unsubscribeFromTopic(document['name']);
                         } else {
                           await user.addFollower(document['uid']);
-                          fcm.subscribeToTopic(document['name']);
+                          await fcm.subscribeToTopic(document['name']);
                         }
                         setState(() {});
                       },
