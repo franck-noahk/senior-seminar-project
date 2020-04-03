@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:e_bulletin/constants.dart';
 import 'package:e_bulletin/widgets/layout/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -21,6 +22,7 @@ class _UpcommingEventsListState extends State<UpcommingEventsList> {
     DocumentSnapshot snapshot = Provider.of<DocumentSnapshot>(context);
     // now = "Timestamp(seconds=" + now + ",nanoseconds=0)";
     return StreamBuilder(
+      key: saveMe,
       stream: Firestore.instance
           .collection('events')
           .where(

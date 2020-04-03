@@ -1,4 +1,8 @@
+import 'dart:async';
+import 'dart:io';
+
 import 'package:e_bulletin/models/user.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'backend/firebase.dart';
 import 'constants.dart';
@@ -7,13 +11,32 @@ import 'package:provider/provider.dart';
 
 import 'widgets/pages/SignIn.dart';
 
+// Future<dynamic> myBackgroundMessageHandler(Map<String, dynamic> message) {
+//   if (message.containsKey('data')) {
+//     // Handle data message
+//     final dynamic data = message['data'];
+//   }
+
+//   if (message.containsKey('notification')) {
+//     // Handle notification message
+//     final dynamic notification = message['notification'];
+//   }
+
+//   // Or do other work.
+// }
+
 void main() async {
   // await getcurrentUser();
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   // This widget is the root of your application.
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return StreamProvider<User>.value(
@@ -23,10 +46,43 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class Wrapper extends StatelessWidget {
+class Wrapper extends StatefulWidget {
   const Wrapper({
     Key key,
   }) : super(key: key);
+
+  @override
+  _WrapperState createState() => _WrapperState();
+}
+
+class _WrapperState extends State<Wrapper> {
+  final FirebaseMessaging _fcm = FirebaseMessaging();
+
+  @override
+  void initState() {
+    super.initState();
+    _fcm.configure(
+      onMessage: (message) async {
+        SnackBar snackBar = SnackBar(
+          content: Text(message['notification']['title']),
+          action: SnackBarAction(
+              label: "Go",
+              onPressed: () {
+                screen = 0;
+              }),
+        );
+        print("Message Recieved");
+        Scaffold.of(saveMe.currentContext).showSnackBar(snackBar);
+      },
+      onLaunch: (message) async {
+        print("Message is " + message['notification']['title']);
+      },
+      onResume: (message) async {
+        print("Message is " + message['notification']['title']);
+      },
+      // onBackgroundMessage: myBackgroundMessageHandler,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,28 +124,33 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final Firestore _db = Firestore.instance;
+  final FirebaseMessaging _fcm = FirebaseMessaging();
+
+  StreamSubscription iosSubscription;
+
+  @override
+  void initState() {
+    super.initState();
+
+    if (Platform.isIOS) {
+      iosSubscription = _fcm.onIosSettingsRegistered.listen((data) async {
+        String token = await _fcm.getToken();
+        print(token);
+      });
+
+      _fcm.requestNotificationPermissions(IosNotificationSettings(
+        alert: true,
+        badge: true,
+        sound: true,
+      ));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
     AuthService _auth = new AuthService();
-    Widget myBottomNavBar = BottomNavigationBar(
-      currentIndex: screen,
-      items: [
-        BottomNavigationBarItem(
-          icon: Icon(Icons.calendar_today),
-          title: Text("Events"),
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.settings),
-          title: Text("Settings"),
-        ),
-      ],
-      onTap: (pageNum) {
-        setState(() {
-          screen = pageNum;
-        });
-      },
-    );
 
     return Scaffold(
       appBar: AppBar(
@@ -114,7 +175,24 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: layoutWidgetArr[screen],
       // body:Center(child: Text("HELLO"),),
-      bottomNavigationBar: myBottomNavBar,
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: screen,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.calendar_today),
+            title: Text("Events"),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            title: Text("Settings"),
+          ),
+        ],
+        onTap: (pageNum) {
+          setState(() {
+            screen = pageNum;
+          });
+        },
+      ),
     );
   }
 }

@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:e_bulletin/constants.dart';
 import 'package:e_bulletin/models/user.dart';
 import 'package:e_bulletin/widgets/layout/loading.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -16,7 +18,6 @@ class _SettingsLayoutState extends State<SettingsLayout> {
   Widget build(BuildContext context) {
     var user = Provider.of<User>(context);
     var userData = Provider.of<DocumentSnapshot>(context);
-
     return StreamBuilder(
       stream: Firestore.instance.collection('orginizations').snapshots(),
       builder: (BuildContext context, orgSnapshot) {
@@ -41,10 +42,11 @@ class _SettingsLayoutState extends State<SettingsLayout> {
                 return Loading();
               }
               return ListView.builder(
+                key: saveMe,
                 itemCount: messageCount,
                 itemBuilder: (_, int index) {
+                  FirebaseMessaging fcm = new FirebaseMessaging();
                   DocumentSnapshot document = orgSnapshot.data.documents[index];
-
                   List<dynamic> data = snapshot.data['isFollowing'];
                   String looking = document['uid'];
                   return Card(
@@ -62,8 +64,22 @@ class _SettingsLayoutState extends State<SettingsLayout> {
                         if (snapshot.data['isFollowing']
                             .toList()
                             .contains(document['uid'])) {
+                          try {
+                            await fcm.unsubscribeFromTopic(document['name']
+                                .toString()
+                                .replaceAll(' ', ''));
+                          } catch (err) {
+                            print(err);
+                          }
                           await user.removeFollower(document['uid']);
                         } else {
+                          try {
+                            await fcm.subscribeToTopic(document['name']
+                                .toString()
+                                .replaceAll(' ', ''));
+                          } catch (err) {
+                            print(err);
+                          }
                           await user.addFollower(document['uid']);
                         }
                         setState(() {});

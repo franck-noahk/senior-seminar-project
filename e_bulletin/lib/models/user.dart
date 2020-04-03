@@ -32,7 +32,6 @@ class User {
 
   Future<void> addFollower(String followerUID) async {
     try {
-      print("Called User Add Follower ");
       await this.db.addFollower(followerUID);
     } catch (e) {
       print("\n\n" + e);
