@@ -3,7 +3,7 @@ const admin = require('firebase-admin');
 admin.initializeApp();
 
 const db = admin.firestore();
-const fcm = admin.messageing();
+const fcm = admin.messaging();
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 //
@@ -35,6 +35,10 @@ exports.sendNotificationToTopic = functions.firestore.document('/events/{eventID
 		}
 	};
 
-	fcm.sendNotificationToTopic(orginizerData.name, payLoad);
+	fcm.sendNotificationToTopic(orginizerData.name, payLoad).then((response) => {
+		return console.log("Successfully sent message" + response);
+	}).catch((error) => {
+		return console.log('Error sending message:', error);
+	});
 
 })
