@@ -8,7 +8,7 @@ class FStoredb {
   final String uid;
   FStoredb({this.uid});
   final CollectionReference users = Firestore.instance.collection('users');
-
+  final CollectionReference _events = Firestore.instance.collection('events');
   Future<DocumentSnapshot> getData() async {
     return await users.document(uid).get();
   }
@@ -29,6 +29,17 @@ class FStoredb {
     } catch (err) {
       print(err);
     }
+  }
+
+  Future<void> createEvent(Map<String, dynamic> map) async {
+    try {
+      DocumentSnapshot currentData = await getData();
+      bool isAdmin = currentData.data['isAdmin'];
+      if (isAdmin) {
+        String isAdminOf = currentData.data['isAdminOf'];
+        await _events.add(map);
+      }
+    } catch (e) {}
   }
 
   Future<void> removeFollower(String follower) async {
