@@ -62,27 +62,6 @@ class _WrapperState extends State<Wrapper> {
   @override
   void initState() {
     super.initState();
-    _fcm.configure(
-      onMessage: (message) async {
-        SnackBar snackBar = SnackBar(
-          content: Text(message['notification']['title']),
-          action: SnackBarAction(
-              label: "Go",
-              onPressed: () {
-                screen = 0;
-              }),
-        );
-        print("Message Recieved");
-        Scaffold.of(saveMe.currentContext).showSnackBar(snackBar);
-      },
-      onLaunch: (message) async {
-        print("Message is " + message['notification']['title']);
-      },
-      onResume: (message) async {
-        print("Message is " + message['notification']['title']);
-      },
-      // onBackgroundMessage: myBackgroundMessageHandler,
-    );
   }
 
   @override
@@ -128,7 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
   StreamSubscription iosSubscription;
 
   @override
-  void initState() async {
+  void initState() {
     super.initState();
 
     if (Platform.isIOS) {
@@ -142,6 +121,27 @@ class _MyHomePageState extends State<MyHomePage> {
         badge: true,
         sound: true,
       ));
+      _fcm.configure(
+        onMessage: (message) async {
+          SnackBar snackBar = SnackBar(
+            content: Text(message['notification']['title']),
+            action: SnackBarAction(
+                label: "Go",
+                onPressed: () {
+                  screen = 0;
+                }),
+          );
+          print("Message Recieved");
+          Scaffold.of(saveMe.currentContext).showSnackBar(snackBar);
+        },
+        onLaunch: (message) async {
+          print("Message is " + message['notification']['title']);
+        },
+        onResume: (message) async {
+          print("Message is " + message['notification']['title']);
+        },
+        // onBackgroundMessage: myBackgroundMessageHandler,
+      );
     }
   }
 
@@ -194,13 +194,17 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
             floatingActionButton: (snapshot.data['isAdmin'])
-                ? FloatingActionButton(onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => MakeEvent(),
-                      ),
-                    );
-                  })
+                ? FloatingActionButton.extended(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => MakeEvent(),
+                        ),
+                      );
+                    },
+                    label: Text("Create new Event"),
+                    isExtended: true,
+                  )
                 : null,
           );
         });
