@@ -37,6 +37,7 @@ class FStoredb {
       bool isAdmin = currentData.data['isAdmin'];
       if (isAdmin) {
         String isAdminOf = currentData.data['isAdminOf'];
+        map.addAll({'organizer': isAdminOf});
         await _events.add(map);
       }
     } catch (e) {}
