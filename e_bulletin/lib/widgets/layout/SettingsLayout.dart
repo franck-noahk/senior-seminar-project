@@ -65,21 +65,23 @@ class _SettingsLayoutState extends State<SettingsLayout> {
                             .toList()
                             .contains(document['uid'])) {
                           try {
-                            await fcm.unsubscribeFromTopic(document['name']
-                                .toString()
-                                .replaceAll(' ', ''));
+                            await fcm.unsubscribeFromTopic(
+                                document['uid'].toString().replaceAll('/', ''));
                           } catch (err) {
                             print(err);
                           }
+                          print("Docuemtn" +
+                              document['uid'].toString().replaceAll(' ', ''));
                           await user.removeFollower(document['uid']);
                         } else {
                           try {
-                            await fcm.subscribeToTopic(document['name']
-                                .toString()
-                                .replaceAll(' ', ''));
+                            await fcm.subscribeToTopic(
+                                document['uid'].toString().replaceAll('/', ''));
                           } catch (err) {
                             print(err);
                           }
+                          print("Docuemtn" +
+                              document['uid'].toString().replaceAll(' ', ''));
                           await user.addFollower(document['uid']);
                         }
                         setState(() {});
