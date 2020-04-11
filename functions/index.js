@@ -26,7 +26,7 @@ exports.addUserToDB = functions.auth.user().onCreate((user) => {
 
 exports.sendNotificationToTopic = functions.firestore.document('/events/{eventID}').onCreate(async snapshot => {
 	let eventData = snapshot.data();
-	let orginizaer = await db.doc(eventData.orginizaer).get();
+	let orginizer = await db.doc(eventData.orginizer).get();
 	let orginizerData = organizer.data();
 	let payLoad = {
 		notification: {
