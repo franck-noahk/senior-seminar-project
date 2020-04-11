@@ -7,6 +7,7 @@ class User {
   bool isAdmin;
   String name;
   FStoredb db;
+  String isAdminOf;
   List<String> isFollowing = new List<String>();
 
   User({this.uid}) {
@@ -22,6 +23,7 @@ class User {
       this.email = result.data['email'];
       this.isAdmin = result.data['isAdmin'];
       this.name = result.data['name'];
+      this.isAdminOf = result.data['isAdminOf'];
       // this.isFollowing = result.data['isFollowing'];
       print("\n\n\n" + this.email + "\n\n\n");
       print(this.isFollowing);

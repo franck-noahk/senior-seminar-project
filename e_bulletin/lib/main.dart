@@ -10,6 +10,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
 
 import 'widgets/pages/SignIn.dart';
+import 'widgets/pages/makeEvent.dart';
 
 // Future<dynamic> myBackgroundMessageHandler(Map<String, dynamic> message) {
 //   if (message.containsKey('data')) {
@@ -61,27 +62,6 @@ class _WrapperState extends State<Wrapper> {
   @override
   void initState() {
     super.initState();
-    _fcm.configure(
-      onMessage: (message) async {
-        SnackBar snackBar = SnackBar(
-          content: Text(message['notification']['title']),
-          action: SnackBarAction(
-              label: "Go",
-              onPressed: () {
-                screen = 0;
-              }),
-        );
-        print("Message Recieved");
-        Scaffold.of(saveMe.currentContext).showSnackBar(snackBar);
-      },
-      onLaunch: (message) async {
-        print("Message is " + message['notification']['title']);
-      },
-      onResume: (message) async {
-        print("Message is " + message['notification']['title']);
-      },
-      // onBackgroundMessage: myBackgroundMessageHandler,
-    );
   }
 
   @override
@@ -95,7 +75,6 @@ class _WrapperState extends State<Wrapper> {
           theme: defaultTheme,
           home: MyHomePage(
             title: 'E-Bulliten',
-            prompt: "SignOut",
           ),
         ),
       );
@@ -113,11 +92,9 @@ class MyHomePage extends StatefulWidget {
   MyHomePage({
     Key key,
     this.title,
-    this.prompt,
   }) : super(key: key);
 
   final String title;
-  final String prompt;
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -144,6 +121,27 @@ class _MyHomePageState extends State<MyHomePage> {
         badge: true,
         sound: true,
       ));
+      _fcm.configure(
+        onMessage: (message) async {
+          SnackBar snackBar = SnackBar(
+            content: Text(message['notification']['title']),
+            action: SnackBarAction(
+                label: "Go",
+                onPressed: () {
+                  screen = 0;
+                }),
+          );
+          print("Message Recieved");
+          Scaffold.of(saveMe.currentContext).showSnackBar(snackBar);
+        },
+        onLaunch: (message) async {
+          print("Message is " + message['notification']['title']);
+        },
+        onResume: (message) async {
+          print("Message is " + message['notification']['title']);
+        },
+        // onBackgroundMessage: myBackgroundMessageHandler,
+      );
     }
   }
 
@@ -152,47 +150,63 @@ class _MyHomePageState extends State<MyHomePage> {
     final user = Provider.of<User>(context);
     AuthService _auth = new AuthService();
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-        actions: <Widget>[
-          Container(
-            margin: EdgeInsets.all(10),
-            child: FlatButton(
-              padding: EdgeInsets.all(8),
-              textColor: Colors.white,
-              color: Colors.red[700],
-              child: Text(
-                widget.prompt,
-                style: TextStyle(fontSize: 15.0),
-              ),
-              onPressed: () {
-                _auth.signOut();
+    return StreamBuilder(
+        stream: user.db.document,
+        builder: (context, snapshot) {
+          return Scaffold(
+            appBar: AppBar(
+              title: Text(widget.title),
+              actions: <Widget>[
+                Container(
+                  margin: EdgeInsets.all(10),
+                  child: FlatButton(
+                    padding: EdgeInsets.all(8),
+                    textColor: Colors.white,
+                    color: Colors.red[700],
+                    child: Text(
+                      "Sign Out",
+                      style: TextStyle(fontSize: 15.0),
+                    ),
+                    onPressed: () {
+                      _auth.signOut();
+                    },
+                  ),
+                ),
+              ],
+            ),
+            body: layoutWidgetArr[screen],
+            bottomNavigationBar: BottomNavigationBar(
+              currentIndex: screen,
+              items: [
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.calendar_today),
+                  title: Text("Events"),
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.settings),
+                  title: Text("Settings"),
+                ),
+              ],
+              onTap: (pageNum) {
+                setState(() {
+                  screen = pageNum;
+                });
               },
             ),
-          ),
-        ],
-      ),
-      body: layoutWidgetArr[screen],
-      // body:Center(child: Text("HELLO"),),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: screen,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.calendar_today),
-            title: Text("Events"),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            title: Text("Settings"),
-          ),
-        ],
-        onTap: (pageNum) {
-          setState(() {
-            screen = pageNum;
-          });
-        },
-      ),
-    );
+            floatingActionButton: (snapshot.data['isAdmin'])
+                ? FloatingActionButton.extended(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => MakeEvent(),
+                        ),
+                      );
+                    },
+                    label: Text("Create new Event"),
+                    isExtended: true,
+                  )
+                : null,
+          );
+        });
   }
 }
