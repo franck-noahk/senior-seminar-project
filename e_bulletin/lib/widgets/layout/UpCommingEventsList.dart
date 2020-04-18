@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_bulletin/constants.dart';
 import 'package:e_bulletin/widgets/layout/loading.dart';
+import 'package:e_bulletin/widgets/pages/eventDetailPage.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:jiffy/jiffy.dart';
@@ -50,6 +51,12 @@ class _UpcommingEventsListState extends State<UpcommingEventsList> {
                   return Card(
                     elevation: 2.0,
                     child: ListTile(
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => EventDetailPage(data: document),
+                        ),
+                      ),
                       title: Text(
                         message != null
                             ? message.toString()
