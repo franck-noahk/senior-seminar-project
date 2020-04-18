@@ -53,9 +53,13 @@ class _UpcommingEventsListState extends State<UpcommingEventsList> {
                     child: ListTile(
                       onTap: () => Navigator.push(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) => EventDetailPage(data: document),
-                        ),
+                        MaterialPageRoute(builder: (context) {
+                          print(
+                              "DocumentID being passed" + document.documentID);
+                          return EventDetailPage(
+                            uuid: document.documentID,
+                          );
+                        }),
                       ),
                       title: Text(
                         message != null
