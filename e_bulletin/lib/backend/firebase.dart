@@ -9,8 +9,21 @@ class FStoredb {
   FStoredb({this.uid});
   final CollectionReference users = Firestore.instance.collection('users');
   final CollectionReference _events = Firestore.instance.collection('events');
+
+  //This is supposed to fill in all of the data for the user, but is not working.
   Future<DocumentSnapshot> getData() async {
     return await users.document(uid).get();
+  }
+
+  Future<List<String>> getUsersFollowers(String uid) async {
+    try {
+      DocumentSnapshot usersData = await users.document(uid).get();
+      List<String> toReturn = usersData['isFollowing'];
+      return toReturn;
+    } catch (e) {
+      print("Error in firebase.dart" + e.message.toString());
+      return null;
+    }
   }
 
   Future<void> addFollower(String follower) async {
