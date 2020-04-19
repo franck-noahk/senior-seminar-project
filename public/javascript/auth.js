@@ -1,6 +1,5 @@
 import { getInputVal } from "./getInputValue.js";
 
-
 // let firebaseConfig = {
 //     apiKey: "AIzaSyBUdXfY8lmHANQTx9RuBu5rBym-aij1JoY",
 //     authDomain: "senior-seminar-project-dev.firebaseapp.com",
@@ -12,61 +11,59 @@ import { getInputVal } from "./getInputValue.js";
 //     measurementId: "G-P8LZ1XEWFJ"
 // };
 
-
 // // Initialize Firebase
 // firebase.initializeApp(firebaseConfig);
 // // firebase.analytics();
 // firebase.performance();
 // firebase.firestore();
 
-if (document.getElementById('register') != null)
-    document.getElementById('register').addEventListener('submit', createAccount);
+if (document.getElementById("register") != null)
+  document.getElementById("register").addEventListener("submit", createAccount);
 
-if (document.getElementById('login-form') != null)
-    document.getElementById('login-form').addEventListener('submit', signin);
+if (document.getElementById("login-form") != null)
+  document.getElementById("login-form").addEventListener("submit", signin);
 
 function signin(e) {
-    e.preventDefault();
+  e.preventDefault();
 
-    let email = getInputVal('login-user-name');
-    let password = getInputVal('login-user-password');
+  let email = getInputVal("login-user-name");
+  let password = getInputVal("login-user-password");
 
-    firebase
-        .auth()
-        .signInWithEmailAndPassword(email, password)
-        .catch(function (error) {
-            // Handle Errors here.
+  firebase
+    .auth()
+    .signInWithEmailAndPassword(email, password)
+    .catch(function (error) {
+      // Handle Errors here.
 
-            let errorMessage = error.message;
+      let errorMessage = error.message;
 
-            if (errorMessage != null) alert(errorMessage);
-            else window.location.replace('index.html');
-
-
-        });
+      if (errorMessage != null) alert(errorMessage);
+      else window.location.replace("index.html");
+    });
 }
+var db = firebase.firestore();
 
 function createAccount(e) {
-    e.preventDefault();
+  e.preventDefault();
 
-    let email = getInputVal('emailCreate');
-    let password = getInputVal('passwordCreate');
-    let passwordCopy = getInputVal('passwordCopy');
-    if (password === passwordCopy)
-        firebase
-            .auth()
-            .createUserWithEmailAndPassword(email, password)
-            .catch(function (error) {
-                // Handle Errors here.
-                let errorCode = error.code;
-                let errorMessage = error.message;
-                // [START_EXCLUDE]
-                if (errorCode == 'auth/weak-password')
-                    alert('The password is too weak.');
-                else alert(errorMessage);
+  let email = getInputVal("emailCreate");
+  let password = getInputVal("passwordCreate");
+  let passwordCopy = getInputVal("passwordCopy");
+  if (password === passwordCopy)
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .catch(function (error) {
+        // Handle Errors here.
+        let errorCode = error.code;
+        let errorMessage = error.message;
+        // [START_EXCLUDE]
+        if (errorCode == "auth/weak-password")
+          alert("The password is too weak.");
+        else alert(errorMessage);
 
-                console.log(error);
-                // [END_EXCLUDE]
-            });
-    else window.alert('Your passwords must be identical.');
+        console.log(error);
+        // [END_EXCLUDE]
+      });
+  else window.alert("Your passwords must be identical.");
 }
