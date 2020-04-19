@@ -35,10 +35,7 @@ jobs:
       - image: circleci/node
     steps:
       - checkout
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package-lock.json" }}
-      - run: cd public; npm install; npm run build;
-      - run: npm install; ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN" --only hosting
+      - run: npm install firebase-tools; ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN" --only hosting
       - save_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
           paths:
