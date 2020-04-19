@@ -115,7 +115,7 @@ class _EventPageDetailState extends State<EventDetailPage> {
                                 left: 40.0,
                                 right: 40,
                                 top: 8.0,
-                                bottom: 8.0,
+                                bottom: 40.0,
                               ),
                               child: ((responseSnapshot.data == null ||
                                       responseSnapshot.data.data == null))

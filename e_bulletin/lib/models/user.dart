@@ -47,4 +47,15 @@ class User {
       print("\n\n" + e.toString());
     }
   }
+
+  Future<List<String>> getFollowers() async {
+    try {
+      List<String> toReturn = await this.db.getUsersFollowers(uid);
+      if (toReturn != null) {
+        return toReturn;
+      } else {
+        print("Error in users.dart get Followers was null");
+      }
+    } catch (e) {}
+  }
 }
