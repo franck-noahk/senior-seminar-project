@@ -99,15 +99,16 @@ class _EventPageDetailState extends State<EventDetailPage> {
                                 style: TextStyle(),
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                (snapshot.data.data['description'] == null)
-                                    ? "No Description given"
-                                    : snapshot.data.data['description'],
-                                style: TextStyle(),
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  (snapshot.data.data['description'] == null)
+                                      ? "No Description given"
+                                      : snapshot.data.data['description'],
+                                  style: TextStyle(),
+                                ),
                               ),
-                            ),
                             Padding(
                               padding: const EdgeInsets.only(
                                 left: 40.0,
