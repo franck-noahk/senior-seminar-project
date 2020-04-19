@@ -109,6 +109,7 @@ class _EventPageDetailState extends State<EventDetailPage> {
                                   style: TextStyle(),
                                 ),
                               ),
+                            ),
                             Padding(
                               padding: const EdgeInsets.only(
                                 left: 40.0,
