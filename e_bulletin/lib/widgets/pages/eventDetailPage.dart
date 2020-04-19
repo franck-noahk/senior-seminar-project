@@ -35,7 +35,10 @@ class _EventPageDetailState extends State<EventDetailPage> {
           .asStream(),
       builder: (context, AsyncSnapshot<DocumentSnapshot> responseSnapshot) {
         if (responseSnapshot.hasError || !responseSnapshot.hasData) {
-          return Loading();
+          return Scaffold(
+            body: Loading(),
+            appBar: AppBar(),
+          );
         }
         return StreamBuilder(
             stream: Firestore.instance
@@ -187,7 +190,10 @@ class _EventPageDetailState extends State<EventDetailPage> {
                         ),
                       ),
                     )
-                  : Loading();
+                  : Scaffold(
+                      body: Loading(),
+                      appBar: AppBar(),
+                    );
             });
       },
     );
