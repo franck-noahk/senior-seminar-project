@@ -32,6 +32,7 @@
     firebase.auth();
     firebase.firestore();
   </script>
+  <script defer type="moduel" src="./javascript/auth.js"></script>
 </head>
 
 <body class="body">
@@ -67,10 +68,21 @@
 
   </div>
   <div class="content-div">
-    <p class="text-content">
-      Welcome to EBulletin, a web application used to alert you to your
-      favorite organizations' events.
-    </p>
+    <div class="form-div">
+      <div class="form-title">
+        <h5 class="label-text">Login</h5>
+      </div>
+      <div class="login-form">
+        <form id="login-form">
+          <input class="text-field" type="email" placeholder="Email..." id="login-user-name">
+          <input class="text-field" type="text" placeholder="Password..." id="login-user-password">
+          <div class="form-buttons">
+            <input class="form-submit" type="submit" value="Log In" name="login-button">
+            <a class="signup-button" type="button" name="signup-button" href="./signup.html">Sign Up </a>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
   <div class="footer">
     <h6> this is the footer</h6>
