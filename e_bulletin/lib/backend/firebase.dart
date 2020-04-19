@@ -68,6 +68,11 @@ class FStoredb {
     }
   }
 
+  Stream<DocumentSnapshot> event(String uid) {
+    Stream<DocumentSnapshot> toReturn = _events.document(uid).get().asStream();
+    return toReturn;
+  }
+
   Stream<DocumentSnapshot> get document {
     Stream<DocumentSnapshot> toReturn = users.document(uid).get().asStream();
     return toReturn;
