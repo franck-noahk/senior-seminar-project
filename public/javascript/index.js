@@ -100,14 +100,14 @@ function getAllEvents() {
 }
 
 function displayEventCards(resultNum) {
-  for (count = 0; count <= resultNum; count++) {
+  for (count = 0; count < resultNum; count++) {
     document.write(
       `<div class="card" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title event-title` +
         count +
         `"></h5>
-                <h6 class="card-subtitle mb-2 text-muted event-subtitle` +
+                <h6 class="card-subtitle mb-2 text-muted event-host` +
         count +
         `"></h6>
                 <p class="card-text event-description` +
@@ -121,6 +121,15 @@ function displayEventCards(resultNum) {
     );
   }
 }
+
+function fillEventCards(resultNum) {
+    for (count = 0; count < resultNum; count++) {
+        document.getElementsByClassName("event-title" + count) = ;
+        document.getElementsByClassName("event-host" + count) = ;
+        document.getElementsByClassName("event-description" + count) = ;
+        document.getElementsByClassName("event-date" + count) = ;
+    }
+  }
 
 function getAllUserInfo() {
   //Function to get all of the user's information
