@@ -55,67 +55,76 @@
       src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
       integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
       crossorigin="anonymous"></script>
+    <script defer src="./javascript/nav.js" type="module"></script>
+
   </head>
 
   <body class="body">
-    <nav class="navbar navbar-expand-lg navbar-light ">
-      <a href="./index.html" class="navbar-brand">
-        <h1>EBulletin</h1>
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse"
-        data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false"
-        aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item"><a href="./my-club.html" class="nav-link">My
-              Club</a></li>
-          <li class="nav-item"><a href="./create-events.html"
-              class="nav-link">Create
-              Event</a>
-          </li>
-          <li class="nav-item"><a href="./events.html"
-              class="nav-link">Events</a></li>
-          <li class="nav-item"><a href="./find-clubs.html"
-              class="nav-link">Find Clubs</a>
-          </li>
-          <li class="nav-item"><a href="./bulletin.html" class="nav-link">My
-              Board</a></li>
-          <li class="nav-item"><a href="./about.html"
-              class="nav-link">About</a></li>
-          <li class="nav-item"><a href="./login.html"
-              class="nav-link">Login</a></li>
-        </ul>
-      </div>
-    </nav>
 
-    </div>
-    <div class="content-div">
-      <div class="form-div">
-        <div class="form-title">
-          <h5 class="label-text">Login</h5>
+    <body class="body">
+      <nav class="navbar navbar-expand-lg navbar-light ">
+        <a href="./index.html" class="navbar-brand">
+          <h1>EBulletin</h1>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto ">
+            <li class="nav-item admin"><a href="./my-club.html"
+                class="nav-link admin">My
+                Club</a></li>
+            <li class="nav-item admin"><a href="./create-events.html"
+                class="nav-link admin">Create
+                Event</a>
+            </li>
+            <li class="nav-item admin"><a href="./events.html"
+                class="nav-link admin">Events</a></li>
+            <li class="nav-item logged-in"><a href="./find-clubs.html"
+                class="nav-link logged-in">Find Clubs</a>
+            </li>
+            <li class="nav-item logged-in"><a href="./bulletin.html"
+                class="nav-link logged-in">My
+                Board</a></li>
+            <li class="nav-item"><a href="./about.html"
+                class="nav-link">About</a></li>
+            <li class='nav-item'><a class="nav-link"
+                href="./help.html">Help</a>
+              </nav-item>
+            <li class="nav-item"><a href="./login.html"
+                class="nav-link">Login</a></li>
+          </ul>
         </div>
-        <div class="login-form">
-          <form id="login-form">
-            <input class="text-field" type="email" placeholder="Email..."
-              id="login-user-name">
-            <input class="text-field" type="text" placeholder="Password..."
-              id="login-user-password">
-            <div class="form-buttons">
-              <input class="form-submit" type="submit" value="Log In"
-                name="login-button">
-              <a class="signup-button" type="button" name="signup-button"
-                href="./signup.html">Sign Up </a>
-            </div>
-          </form>
+      </nav>
+
+      </div>
+      <div class="content-div">
+        <div class="form-div">
+          <div class="form-title">
+            <h5 class="label-text">Login</h5>
+          </div>
+          <div class="login-form">
+            <form id="login-form">
+              <input class="text-field" type="email" placeholder="Email..."
+                id="login-user-name">
+              <input class="text-field" type="text" placeholder="Password..."
+                id="login-user-password">
+              <div class="form-buttons">
+                <input class="form-submit" type="submit" value="Log In"
+                  name="login-button">
+                <a class="signup-button" type="button" name="signup-button"
+                  href="./signup.html">Sign Up </a>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="footer">
-      <h6> this is the footer</h6>
-    </div>
-  </body>
+      <div class="footer">
+        <h6> this is the footer</h6>
+      </div>
+    </body>
 
 </html>
