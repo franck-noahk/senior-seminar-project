@@ -36,11 +36,12 @@ function verify() {
     console.log(window.location.pathname);
     console.log(getAdminPriv());
     if (uid && getAdminPriv()) {
-        //TODO: they are admin
+
         console.log("Is Admin");
     } else if (uid) {
         console.log("is user");
-        //TODO: They are logedin
+        //TODO: build sign-out button
+
         if (window.location.pathname == 'my-club.html' || window.location.pathname == 'create-events.html' || window.location.pathname == 'my-club.html') {
             window.location.href = "https://senior-seminar-project-dev.web.app/";
         }
@@ -53,7 +54,7 @@ function verify() {
 
     } else {
         console.log("normy");
-        //TODO: normal user
+
         if (window.location.pathname == 'my-club.html' || window.location.pathname == 'create-events.html' || window.location.pathname == 'my-club.html') {
             window.location.href = "https://senior-seminar-project-dev.web.app/login.html";
         }
