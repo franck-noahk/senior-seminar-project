@@ -97,6 +97,19 @@ function getAllEvents() {
     */
 }
 
+function displayEvents(name, subname, description, date){
+    document.write(name, subname, description, date){
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{name}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{subname}</h6>
+                <p class="card-text">{description}</p>
+                <p class="card-date">{date}</p>
+            </div>
+        </div>
+    }
+}
+
 function getAllUserInfo() {
     //Function to get all of the user's information
     /*
