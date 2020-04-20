@@ -13,6 +13,10 @@
   flex-direction: row;
 }
 
+nav {
+  background-color: #b80505;
+}
+
 .header-button {
   float: right;
   height: auto;
@@ -24,6 +28,7 @@
   border-width: 0.8px;
   border-left-width: 1.6px;
   border-right-width: 0px;
+  padding-top: 20px;
 }
 
 .in-out-header-button {
@@ -83,6 +88,7 @@
 a {
   color: black;
   text-decoration: none;
+  padding: 50% auto;
 }
 
 .form-div {

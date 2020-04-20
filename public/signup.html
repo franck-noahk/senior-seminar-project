@@ -1,94 +1,124 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <link rel="stylesheet" href="style.css" />
-  <!-- The core Firebase JS SDK is always required and must be listed first -->
-  <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+  <head>
+    <link rel="stylesheet" href="style.css" />
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js">
+    </script>
 
-  <!-- TODO: Add SDKs for Firebase products that you want to use
+    <!-- TODO: Add SDKs for Firebase products that you want to use
        https://firebase.google.com/docs/web/setup#available-libraries -->
-  <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-analytics.js"></script>
+    <script
+      src="https://www.gstatic.com/firebasejs/7.14.1/firebase-analytics.js">
+    </script>
 
-  <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js">
+    </script>
 
-  <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
+    <script
+      src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js">
+    </script>
 
-  <script defer>
-    // Your web app's Firebase configuration
-    var firebaseConfig = {
-      apiKey: "AIzaSyBUdXfY8lmHANQTx9RuBu5rBym-aij1JoY",
-      authDomain: "senior-seminar-project-dev.firebaseapp.com",
-      databaseURL: "https://senior-seminar-project-dev.firebaseio.com",
-      projectId: "senior-seminar-project-dev",
-      storageBucket: "senior-seminar-project-dev.appspot.com",
-      messagingSenderId: "320382771706",
-      appId: "1:320382771706:web:c8b53363d4f6152cc80443",
-      measurementId: "G-P8LZ1XEWFJ"
-    };
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    firebase.analytics();
-    firebase.auth();
-    firebase.firestore();
-  </script>
-  <script defer type="module" src="./javascript/auth.js"></script>
-</head>
+    <script defer>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyBUdXfY8lmHANQTx9RuBu5rBym-aij1JoY",
+        authDomain: "senior-seminar-project-dev.firebaseapp.com",
+        databaseURL: "https://senior-seminar-project-dev.firebaseio.com",
+        projectId: "senior-seminar-project-dev",
+        storageBucket: "senior-seminar-project-dev.appspot.com",
+        messagingSenderId: "320382771706",
+        appId: "1:320382771706:web:c8b53363d4f6152cc80443",
+        measurementId: "G-P8LZ1XEWFJ"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+      firebase.auth();
+      firebase.firestore();
 
-<body class="body">
-  <div class="header-div">
-    <a href="./index.html" class="logo-text">
-      <h2 class="logo-text">EBulletin</h2>
-    </a>
-    <div class="header-button admin-only">
-      <a href="./my-club.html">My Club</a>
-    </div>
-    <div class="header-button admin-only">
-      <a href="./create-events.html">Create Event</a>
-    </div>
-    <div class="header-button admin-only">
-      <a href="./events.html">My Events</a>
-    </div>
-    <div class="header-button user-only">
-      <a href="./find-clubs.html">Clubs</a>
-    </div>
-    <div class="header-button user-only">
-      <a href="bulletin.html">My Board</a>
-    </div>
-    <div class="header-button">
-      <a href="./about.html">About</a>
-    </div>
-    <div class="header-button">
-      <a href="./help.html">Help
-    </div>
-    <div class="in-out-header-button">
-      <a href="./login.html">Log In</a>
-    </div>
-  </div>
+    </script>
+    <script defer type="module" src="./javascript/auth.js"></script>
+    <link rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous">
+    <script defer src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"></script>
+    <script defer
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"></script>
+    <script defer
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"></script>
+  </head>
 
-  </div>
-  <div class="content-div">
-    <div class="form-div">
-      <div class="form-title">
-        <h5 class="label-text">Login</h5>
+  <body class="body">
+    <nav class="navbar navbar-expand-lg navbar-light ">
+      <a href="./index.html" class="navbar-brand">
+        <h1>EBulletin</h1>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><a href="./my-club.html" class="nav-link">My
+              Club</a></li>
+          <li class="nav-item"><a href="./create-events.html"
+              class="nav-link">Create
+              Event</a>
+          </li>
+          <li class="nav-item"><a href="./events.html"
+              class="nav-link">Events</a></li>
+          <li class="nav-item"><a href="./find-clubs.html"
+              class="nav-link">Find Clubs</a>
+          </li>
+          <li class="nav-item"><a href="./bulletin.html" class="nav-link">My
+              Board</a></li>
+          <li class="nav-item"><a href="./about.html"
+              class="nav-link">About</a></li>
+          <li class="nav-item"><a href="./login.html"
+              class="nav-link">Login</a></li>
+        </ul>
       </div>
-      <div class="signup-form">
-        <form id="register">
+    </nav>
 
-          <input class="text-field" type="email" placeholder="Email..." id="emailCreate">
-          <input class="text-field" type="text" placeholder="Password..." id="passwordCreate">
-          <input class="text-field" type="text" placeholder="Retype Password..." id="passwordCopy">
-          <div class="form-buttons">
-            <a class="form-submit" type="button" value="Login" href="./login.html" name="login-button"> Login </a>
-            <input class="signup-button" type="submit" value="Sign Up" name="signup-button">
-          </div>
-        </form>
+    </div>
+    <div class="content-div">
+      <div class="form-div">
+        <div class="form-title">
+          <h5 class="label-text">Login</h5>
+        </div>
+        <div class="signup-form">
+          <form id="register">
+
+            <input class="text-field" type="email" placeholder="Email..."
+              id="emailCreate">
+            <input class="text-field" type="text" placeholder="Password..."
+              id="passwordCreate">
+            <input class="text-field" type="text"
+              placeholder="Retype Password..." id="passwordCopy">
+            <div class="form-buttons">
+              <a class="form-submit" type="button" value="Login"
+                href="./login.html" name="login-button"> Login </a>
+              <input class="signup-button" type="submit" value="Sign Up"
+                name="signup-button">
+            </div>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="footer">
-    <h6> this is the footer</h6>
-  </div>
-</body>
+    <div class="footer">
+      <h6> this is the footer</h6>
+    </div>
+  </body>
 
 </html>
