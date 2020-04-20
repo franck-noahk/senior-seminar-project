@@ -124,10 +124,10 @@ function displayEventCards(resultNum) {
 
 function fillEventCards(resultNum) {
     for (count = 0; count < resultNum; count++) {
-        document.getElementsByClassName("event-title" + count) = ;
-        document.getElementsByClassName("event-host" + count) = ;
-        document.getElementsByClassName("event-description" + count) = ;
-        document.getElementsByClassName("event-date" + count) = ;
+        document.getElementsByClassName("event-title" + count).innerHTML = ;
+        document.getElementsByClassName("event-host" + count).innerHTML = ;
+        document.getElementsByClassName("event-description" + count).innerHTML = ;
+        document.getElementsByClassName("event-date" + count).innerHTML = ;
     }
   }
 
