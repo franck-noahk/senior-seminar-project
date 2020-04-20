@@ -100,7 +100,7 @@ function getAllEvents() {
 }
 
 function displayEventCards(resultNum) {
-  while (count <= resultNum) {
+  for (count = 0; count <= resultNum; count++) {
     document.write(
       `<div class="card" style="width: 18rem;">
             <div class="card-body">
@@ -119,7 +119,6 @@ function displayEventCards(resultNum) {
             </div>
         </div>`
     );
-    count++;
   }
 }
 
