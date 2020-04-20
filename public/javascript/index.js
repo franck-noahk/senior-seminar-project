@@ -72,6 +72,21 @@ function verify() {
     // verify();
 }
 
+function getEventsForFollowing(userUid) {
+    //Should print data out to the screen or return some list of predefined objects that can be looped over easily to display on screen. active
+    /*
+    location in db:
+    /users/{user}
+        -isFollowing:array of strings
+
+    /events/{event}
+        -organizer: string of who made the event
+
+    should display in feed if the two strings are idential
+
+
+    */
+}
 
 function getAllEvents() {
     //Function to get all of the events
