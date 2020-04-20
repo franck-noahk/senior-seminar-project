@@ -54,38 +54,44 @@
       src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
       integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
       crossorigin="anonymous"></script>
+
+    <script src="./javascript/nav.js" type="module"></script>
+
   </head>
 
   <body class="body">
-    <div class="header-div">
-      <a href="./index.html" class="logo-text">
-        <h2 class="logo-text">EBulletin</h2>
+    <nav class="navbar navbar-expand-lg navbar-light ">
+      <a href="./index.html" class="navbar-brand">
+        <h1>EBulletin</h1>
       </a>
-      <div class="header-button admin-only">
-        <a href="./my-club.html">My Club</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><a href="./my-club.html" class="nav-link">My
+              Club</a></li>
+          <li class="nav-item"><a href="./create-events.html"
+              class="nav-link">Create
+              Event</a>
+          </li>
+          <li class="nav-item"><a href="./events.html"
+              class="nav-link">Events</a></li>
+          <li class="nav-item"><a href="./find-clubs.html"
+              class="nav-link">Find Clubs</a>
+          </li>
+          <li class="nav-item"><a href="./bulletin.html" class="nav-link">My
+              Board</a></li>
+          <li class="nav-item"><a href="./about.html"
+              class="nav-link">About</a></li>
+          <li class="nav-item"><a href="./login.html"
+              class="nav-link">Login</a></li>
+        </ul>
       </div>
-      <div class="header-button admin-only">
-        <a href="./create-events.html">Create Event</a>
-      </div>
-      <div class="header-button admin-only">
-        <a href="./events.html">My Events</a>
-      </div>
-      <div class="header-button user-only">
-        <a href="./find-clubs.html">Clubs</a>
-      </div>
-      <div class="header-button user-only">
-        <a href="bulletin.html">My Board</a>
-      </div>
-      <div class="header-button">
-        <a href="./about.html">About</a>
-      </div>
-      <div class="header-button">
-        <a href="./help.html">Help
-      </div>
-      <div class="in-out-header-button header-button">
-        <a href="./login.html">Log In</a>
-      </div>
-    </div>
+    </nav>
 
     </div>
     <div class="content-div">
