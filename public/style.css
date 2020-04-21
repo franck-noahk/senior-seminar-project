@@ -339,10 +339,16 @@ a {
   margin-right: 5%;
 }
 
+.prelim-query {
+  display: flex;
+  flex-direction: row;
+}
+
 .push-to-div {
   display: flex;
   flex-direction: row;
   margin-top: 20px;
+  margin-right: 15%;
 }
 
 .push-to-select {
@@ -367,10 +373,10 @@ a {
 
 .poll-desc-div {
   width: 95%;
-  height: 95%;
+  height: 65%;
   display: flex;
   flex-direction: column;
-  margin-top: 5px;
+  margin-top: 12px;
   margin-bottom: 10px;
   margin-left: auto;
   margin-right: auto;
@@ -378,7 +384,7 @@ a {
 
 .poll-desc-field {
   width: 100%;
-  height: 100%;
+  height: 65%;
   margin-left: auto;
   margin-right: auto;
   text-align: left;
