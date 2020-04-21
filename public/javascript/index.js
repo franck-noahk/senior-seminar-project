@@ -1,4 +1,6 @@
-import { getInputVal } from './getInputValue.js';
+import {
+	getInputVal
+} from './getInputValue.js';
 let db = firebase.firestore();
 
 let uid = null;
@@ -7,7 +9,7 @@ async function getAdminPriv() {
 	var db = firebase.firestore();
 	if (uid != null) {
 		let docref = db.collection('users').doc(uid);
-		docref.get().then(function(doc) {
+		docref.get().then(function (doc) {
 			let toReturn = doc.data().isAdmin;
 			return toReturn;
 		});
@@ -15,7 +17,7 @@ async function getAdminPriv() {
 		return false;
 	}
 }
-firebase.auth().onAuthStateChanged(function(user) {
+firebase.auth().onAuthStateChanged(function (user) {
 	//Pulling values from our db
 	if (user) {
 		uid = user.uid;
@@ -122,17 +124,17 @@ function displayEventCards(resultNum) {
 			`<div class="card" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title event-title` +
-				count +
-				`"></h5>
+			count +
+			`"></h5>
                 <h6 class="card-subtitle mb-2 text-muted event-host` +
-				count +
-				`"></h6>
+			count +
+			`"></h6>
                 <p class="card-text event-description` +
-				count +
-				`"></p>
+			count +
+			`"></p>
                 <p class="card-date event-date` +
-				count +
-				`"></p>
+			count +
+			`"></p>
             </div>
         </div>`
 		);
@@ -186,7 +188,7 @@ async function signin(e) {
 	let email = getInputVal('login-user-name');
 	let password = getInputVal('login-user-password');
 
-	await firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+	await firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
 		// Handle Errors here.
 
 		let errorMessage = error.message;
@@ -197,14 +199,14 @@ async function signin(e) {
 	window.location.href = 'http://127.0.0.1:5500/public/index.html';
 }
 
-function createAccount(e) {
+async function createAccount(e) {
 	e.preventDefault();
 
 	let email = getInputVal('emailCreate');
 	let password = getInputVal('passwordCreate');
 	let passwordCopy = getInputVal('passwordCopy');
 	if (password === passwordCopy)
-		firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+		await firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
 			// Handle Errors here.
 			let errorCode = error.code;
 			let errorMessage = error.message;
