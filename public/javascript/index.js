@@ -124,7 +124,7 @@ async function getAllEvents() {
 					doc.name,
 					doc.organizer,
 					doc.location,
-					doc.event_time.toString(),
+					doc.event_time,
 					doc.description
 				);
 			});
