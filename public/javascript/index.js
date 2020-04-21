@@ -1,6 +1,4 @@
-import {
-	getInputVal
-} from "./getInputValue.js";
+import { getInputVal } from './getInputValue.js';
 
 let db = firebase.firestore();
 
@@ -9,8 +7,8 @@ let uid = null;
 async function getAdminPriv() {
 	var db = firebase.firestore();
 	if (uid != null) {
-		let docref = db.collection("users").doc(uid);
-		docref.get().then(function (doc) {
+		let docref = db.collection('users').doc(uid);
+		docref.get().then(function(doc) {
 			let toReturn = doc.data().isAdmin;
 			return toReturn;
 		});
@@ -18,16 +16,16 @@ async function getAdminPriv() {
 		return false;
 	}
 }
-firebase.auth().onAuthStateChanged(function (user) {
-	firebase.auth().onAuthStateChanged(function (user) {
+firebase.auth().onAuthStateChanged(function(user) {
+	firebase.auth().onAuthStateChanged(function(user) {
 		//Pulling values from our db
 		if (user) {
 			uid = user.uid;
-			console.log("Uid = " + uid);
+			console.log('Uid = ' + uid);
 			verify();
 		} else {
 			uid = null;
-			console.log("Uid = " + uid);
+			console.log('Uid = ' + uid);
 			verify();
 		}
 	});
@@ -37,42 +35,41 @@ function verify() {
 	console.log(window.location.pathname);
 	console.log(getAdminPriv());
 	if (uid && getAdminPriv()) {
-		console.log("Is Admin");
+		console.log('Is Admin');
 		creatSignOutButton();
 	} else if (uid) {
-		console.log("is user");
+		console.log('is user');
 		//TODO: build sign-out button
 
 		if (
-			window.location.pathname == "my-club.html" ||
-			window.location.pathname == "create-events.html" ||
-			window.location.pathname == "my-club.html"
+			window.location.pathname == 'my-club.html' ||
+			window.location.pathname == 'create-events.html' ||
+			window.location.pathname == 'my-club.html'
 		) {
-			window.location.href = "https://senior-seminar-project-dev.web.app/";
+			window.location.href = 'https://senior-seminar-project-dev.web.app/';
 		}
 
-		let toRemove = document.getElementsByClassName("admin");
+		let toRemove = document.getElementsByClassName('admin');
 		for (var i = toRemove.length - 1; i >= 0; --i) {
 			toRemove[i].remove();
 		}
 		creatSignOutButton();
 	} else {
-		console.log("normy");
+		console.log('normy');
 
 		if (
-			window.location.pathname == "my-club.html" ||
-			window.location.pathname == "create-events.html" ||
-			window.location.pathname == "my-club.html"
+			window.location.pathname == 'my-club.html' ||
+			window.location.pathname == 'create-events.html' ||
+			window.location.pathname == 'my-club.html'
 		) {
-			window.location.href =
-				"https://senior-seminar-project-dev.web.app/login.html";
+			window.location.href = 'https://senior-seminar-project-dev.web.app/login.html';
 		}
-		let toRemove = document.getElementsByClassName("admin");
+		let toRemove = document.getElementsByClassName('admin');
 		if (toRemove)
 			for (var i = toRemove.length - 1; i >= 0; --i) {
 				toRemove[i].remove();
 			}
-		toRemove = document.getElementsByClassName("logged-in");
+		toRemove = document.getElementsByClassName('logged-in');
 		if (toRemove)
 			for (var i = toRemove.length - 1; i >= 0; --i) {
 				toRemove[i].remove();
@@ -82,15 +79,15 @@ function verify() {
 }
 
 function creatSignOutButton() {
-	let nav = document.getElementsByClassName("navbar-nav");
+	let nav = document.getElementsByClassName('navbar-nav');
 	for (let index = 0; index < nav.length; index++) {
 		const element = nav[index];
-		let login = document.getElementById("login-button");
-		let signOut = document.createElement("li");
-		let link = document.createElement("a");
-		link.setAttribute("href", "./signOut.html");
-		link.setAttribute("class", "nav-link");
-		link.innerText = "Sign Out";
+		let login = document.getElementById('login-button');
+		let signOut = document.createElement('li');
+		let link = document.createElement('a');
+		link.setAttribute('href', './signOut.html');
+		link.setAttribute('class', 'nav-link');
+		link.innerText = 'Sign Out';
 		signOut.appendChild(link);
 
 		element.replaceChild(signOut, login);
@@ -114,59 +111,50 @@ function getEventsForFollowing(userUid) {
 }
 
 async function getAllEvents() {
-	db.collection("events")
-		.get()
-		.then(function (querySnapshot) {
-			querySnapshot.forEach(function (doc) {
-				// doc.data() is never undefined for query doc snapshots
+	db.collection('events').get().then(function(querySnapshot) {
+		querySnapshot.forEach(function(doc) {
+			// doc.data() is never undefined for query doc snapshots
 
-				createEventCard(
-					doc.name,
-					doc.organizer,
-					doc.location,
-					doc.event_time,
-					doc.description
-				);
-			});
+			createEventCard(doc.name, doc.organizer, doc.location, doc.event_time, doc.description);
 		});
+	});
 }
-if (document.getElementById("bulletin-content-div")) {
-	document.getElementById("bulletin-content-div").onload = getAllEvents();
+if (document.getElementById('bulletin-content-div')) {
+	document.getElementById('bulletin-content-div').onload = getAllEvents();
 }
-
 
 function createEventCard(title, eHost, locate, date, descript) {
-	let root = document.getElementById("bulletin-content-div");
+	let root = document.getElementById('bulletin-content-div');
 	if (root) {
-		let card = document.createElement("div");
-		card.setAttribute("class", "card");
+		let card = document.createElement('div');
+		card.setAttribute('class', 'card');
 
-		let cardBody = document.createElement("div");
-		cardBody.setAttribute("class", "card-body");
+		let cardBody = document.createElement('div');
+		cardBody.setAttribute('class', 'card-body');
 		card.appendChild(cardBody);
 
-		let cardTitle = document.createElement("h5");
-		cardTitle.setAttribute("class", "card-title event-title");
+		let cardTitle = document.createElement('h5');
+		cardTitle.setAttribute('class', 'card-title event-title');
 		cardTitle.innerText(title);
 		cardBody.appendChild(cardTitle);
 
-		let host = document.createElement("h6");
-		host.setAttribute("class", "card-host mb-2 text-muted event-host");
+		let host = document.createElement('h6');
+		host.setAttribute('class', 'card-host mb-2 text-muted event-host');
 		host.innerText(eHost);
 		cardBody.appendChild(host);
 
-		let desc = document.createElement("p");
-		desc.setAttribute("class", "card-text event-description");
+		let desc = document.createElement('p');
+		desc.setAttribute('class', 'card-text event-description');
 		desc.innerText(descript);
 		cardBody.appendChild(desc);
 
-		let location = document.createElement("p");
-		location.setAttribute("class", "card-location event-location");
+		let location = document.createElement('p');
+		location.setAttribute('class', 'card-location event-location');
 		location.innerText(locate);
 		cardBody.appendChild(eventDate);
 
-		let eventDate = document.createElement("p");
-		eventDate.setAttribute("class", "card-date event-date");
+		let eventDate = document.createElement('p');
+		eventDate.setAttribute('class', 'card-date event-date');
 		eventDate.innerText(date);
 		cardBody.appendChild(eventDate);
 
@@ -200,53 +188,46 @@ function getOrgData(orgUid) {
 	//orgUid is considered a string
 }
 
-if (document.getElementById("register") != null)
-	document.getElementById("register").addEventListener("submit", createAccount);
+if (document.getElementById('register') != null)
+	document.getElementById('register').addEventListener('submit', createAccount);
 
-if (document.getElementById("login-form") != null)
-	document.getElementById("login-form").addEventListener("submit", signin);
+if (document.getElementById('login-form') != null)
+	document.getElementById('login-form').addEventListener('submit', signin);
 
 async function signin(e) {
 	e.preventDefault();
 
-	let email = getInputVal("login-user-name");
-	let password = getInputVal("login-user-password");
+	let email = getInputVal('login-user-name');
+	let password = getInputVal('login-user-password');
 
-	await firebase
-		.auth()
-		.signInWithEmailAndPassword(email, password)
-		.catch(function (error) {
-			// Handle Errors here.
+	await firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+		// Handle Errors here.
 
-			let errorMessage = error.message;
+		let errorMessage = error.message;
 
-			if (errorMessage != null) alert(errorMessage);
-			else window.location.replace("index.html");
-		});
-	window.location.replace = "senior-seminar-project-dev.web.app/index.html";
+		if (errorMessage != null) alert(errorMessage);
+		else window.location.replace('index.html');
+	});
+	window.location.replace = 'index.html';
 }
 
 async function createAccount(e) {
 	e.preventDefault();
 
-	let email = getInputVal("emailCreate");
-	let password = getInputVal("passwordCreate");
-	let passwordCopy = getInputVal("passwordCopy");
+	let email = getInputVal('emailCreate');
+	let password = getInputVal('passwordCreate');
+	let passwordCopy = getInputVal('passwordCopy');
 	if (password === passwordCopy)
-		await firebase
-		.auth()
-		.createUserWithEmailAndPassword(email, password)
-		.catch(function (error) {
+		await firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
 			// Handle Errors here.
 			let errorCode = error.code;
 			let errorMessage = error.message;
 			// [START_EXCLUDE]
-			if (errorCode == "auth/weak-password")
-				alert("The password is too weak.");
+			if (errorCode == 'auth/weak-password') alert('The password is too weak.');
 			else alert(errorMessage);
 
 			console.log(error);
 			// [END_EXCLUDE]
 		});
-	else window.alert("Your passwords must be identical.");
+	else window.alert('Your passwords must be identical.');
 }
