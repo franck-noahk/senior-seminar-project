@@ -323,7 +323,7 @@ a {
   flex-direction: column;
   align-content: center;
   width: 779px;
-  height: 1500px;
+  height: auto;
   margin: 40px;
   margin-left: auto;
   margin-right: auto;
@@ -368,7 +368,34 @@ a {
 }
 
 .poll-question-one {
+  display: flex;
+  flex-direction: column;
   height: 400px;
+  justify-content: center;
+}
+.poll-question-two {
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  justify-content: center;
+}
+.poll-question-three {
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  justify-content: center;
+}
+.poll-question-four {
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  justify-content: center;
+}
+.poll-question-five {
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  justify-content: center;
 }
 
 .poll-desc-div {
@@ -389,4 +416,28 @@ a {
   margin-right: auto;
   text-align: left;
   resize: none;
+}
+
+.field-label-query {
+  margin-bottom: 3px;
+  margin-right: 10px;
+}
+
+.query-answers-field {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.query-answer-field {
+  display: flex;
+  flex-direction: row;
+  margin-right: auto;
+}
+
+.answer-field {
+  margin-left: 15px;
 }
