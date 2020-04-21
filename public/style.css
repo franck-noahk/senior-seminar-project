@@ -67,7 +67,7 @@ nav {
   margin-right: 12.5vw;
 }
 
-.bulletin-content-div {
+#bulletin-content-div {
   display: flex;
   flex-direction: column;
   background-color: whitesmoke;
