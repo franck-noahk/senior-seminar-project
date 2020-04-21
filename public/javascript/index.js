@@ -2,9 +2,7 @@ import {
 	getInputVal
 } from './getInputValue.js';
 
-import {
-	getInputVal
-} from "./getInputValue.js";
+
 
 let db = firebase.firestore();
 
