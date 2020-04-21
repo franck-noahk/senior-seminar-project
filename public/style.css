@@ -67,6 +67,20 @@ nav {
   margin-right: 12.5vw;
 }
 
+.bulletin-content-div {
+  display: flex;
+  flex-direction: column;
+  background-color: whitesmoke;
+  min-height: 850px;
+  width: 75vw;
+  align-content: center;
+  float: center;
+  padding-left: 1vw;
+  padding-right: 1vw;
+  margin-left: 12.5vw;
+  margin-right: 12.5vw;
+}
+
 .text-content {
   color: black;
   font-size: 24px;
