@@ -225,7 +225,7 @@ async function signin(e) {
 			if (errorMessage != null) alert(errorMessage);
 			else window.location.replace("index.html");
 		});
-	window.location.href = "http://127.0.0.1:5500/public/index.html";
+	window.location.href = "https://senior-seminar-project-dev.web.app/index.html";
 }
 
 async function createAccount(e) {
