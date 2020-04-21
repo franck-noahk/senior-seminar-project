@@ -223,7 +223,7 @@ async function signin(e) {
 			if (errorMessage != null) alert(errorMessage);
 			else window.location.replace("index.html");
 		});
-	window.location.href = "senior-seminar-project-dev.web.app/index.html";
+	window.location.replace = "senior-seminar-project-dev.web.app/index.html";
 }
 
 async function createAccount(e) {
