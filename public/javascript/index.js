@@ -42,9 +42,9 @@ function verify() {
 		//TODO: build sign-out button
 
 		if (
-			window.location.pathname == 'my-club.html' ||
-			window.location.pathname == 'create-events.html' ||
-			window.location.pathname == 'my-club.html'
+			window.location.pathname.includes('my-club.html') ||
+			window.location.pathname.includes('create-events.html') ||
+			window.location.pathname.includes('my-club.html')
 		) {
 			window.location.href = 'https://senior-seminar-project-dev.web.app/';
 		}
