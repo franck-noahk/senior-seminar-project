@@ -63,11 +63,12 @@ nav {
   float: center;
   padding-left: 1vw;
   padding-right: 1vw;
+  padding-bottom: 25px;
   margin-left: 12.5vw;
   margin-right: 12.5vw;
 }
 
-.bulletin-content-div {
+#bulletin-content-div {
   display: flex;
   flex-direction: column;
   background-color: whitesmoke;
@@ -77,6 +78,7 @@ nav {
   float: center;
   padding-left: 1vw;
   padding-right: 1vw;
+  padding-bottom: 25px;
   margin-left: 12.5vw;
   margin-right: 12.5vw;
 }
@@ -97,6 +99,7 @@ nav {
   background-color: #990000;
   flex-direction: row;
   text-align: center;
+  justify-content: center;
 }
 
 a {
