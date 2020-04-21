@@ -93,7 +93,7 @@
             <li class='nav-item'><a class="nav-link"
                 href="./help.html">Help</a>
               </nav-item>
-            <li class="nav-item"><a href="./login.html"
+            <li class="nav-item" id="login-button"><a href="./login.html"
                 class="nav-link">Login</a></li>
           </ul>
         </div>
@@ -103,46 +103,50 @@
       <div class="content-div">
         <div class="create-event-div">
           <div class="form-title">
-          <h2 class="label-text">Create Event</h5>
+            <h2 class="label-text">Create Event</h5>
           </div>
           <form class="create-event-form">
             <div class="non-button-fields">
               <div class="non-desc-fields">
                 <div class="text-field-div">
                   <p class="field-label">*Event Name:</p>
-                <input class="event-text-field" type="text" placeholder="*Name...">
+                  <input class="event-text-field" type="text"
+                    placeholder="*Name...">
                 </div>
 
                 <div class="text-field-div">
                   <p class="field-label">*Event Location:</p>
-                <input class="event-text-field" type="text" placeholder="*Location...">
+                  <input class="event-text-field" type="text"
+                    placeholder="*Location...">
                 </div>
 
                 <div class="date-field-div">
-                <p class="field-label">*Event Date:</p>
-                <input class="event-date-field" type="date">
+                  <p class="field-label">*Event Date:</p>
+                  <input class="event-date-field" type="date">
                 </div>
 
                 <div class="price-field-div">
                   <p class="field-label">Event Price(Optional):</p>
-                <input class="event-price-field" type="number" placeholder="0.00">
+                  <input class="event-price-field" type="number"
+                    placeholder="0.00">
                 </div>
               </div>
 
-            <div class="desc-field-div">
-            <p class="field-label">*Event Description:</p>
-            <textarea class="event-desc-field" type="text" placeholder="*Description..."></textarea>
+              <div class="desc-field-div">
+                <p class="field-label">*Event Description:</p>
+                <textarea class="event-desc-field" type="text"
+                  placeholder="*Description..."></textarea>
+              </div>
             </div>
-          </div>
 
             <div class="event-form-buttons">
               <input class="cancel-button" type="submit" value="Cancel"
                 name="cancel-button">
-            <input class="event-form-submit" type="submit" value="Create Event"
-                name="create-event-button">
+              <input class="event-form-submit" type="submit"
+                value="Create Event" name="create-event-button">
             </div>
           </form>
-          
+
         </div>
       </div>
       <div class="footer">
