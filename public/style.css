@@ -178,3 +178,126 @@ a {
   flex-basis: 100%;
   margin: 2%;
 }
+
+.create-event-form {
+  margin: 4%;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.non-button-fields {
+  margin: 4%;
+  margin-top: 0%;
+  margin-bottom: 0%;
+  display: flex;
+  flex-direction: row;
+}
+
+.event-form-buttons {
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  margin-top: 0%;
+  width: 100%;
+  height: 15%;
+}
+
+.create-event-div {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  width: 779px;
+  height: 531px;
+  margin: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  background: #c4c4c4;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.event-form-submit {
+  display: flex;
+  align-self: center;
+  text-align: center;
+  margin: 20%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 40px;
+  width: 30%;
+  border: none;
+  color: white;
+  background-color: #b80505;
+}
+
+.cancel-button {
+  display: flex;
+  align-self: center;
+  text-align: center;
+  margin: 20%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 40px;
+  width: 30%;
+  border: none;
+  color: white;
+  background-color: #333333;
+}
+
+.event-text-field {
+  margin-bottom: 10px;
+}
+
+.date-field-div {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.event-date-field {
+  color: grey;
+}
+
+.price-field-div {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
+  margin-bottom: 0px;
+}
+
+.text-field-div {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.desc-field-div {
+  width: 70%;
+  height: 95%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.event-desc-field {
+  width: 100%;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  resize: none;
+}
+
+.non-desc-fields {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+  width: 40%;
+}
+
+.field-label {
+  margin-bottom: 3px;
+}
