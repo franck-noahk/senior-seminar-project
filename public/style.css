@@ -370,32 +370,32 @@ a {
 .poll-question-one {
   display: flex;
   flex-direction: column;
-  height: 400px;
+  height: 300px;
   justify-content: center;
 }
 .poll-question-two {
   display: flex;
   flex-direction: column;
-  height: 400px;
+  height: 300px;
   justify-content: center;
 }
 .poll-question-three {
   display: flex;
   flex-direction: column;
-  height: 400px;
+  height: 300px;
   justify-content: center;
 }
 .poll-question-four {
   display: flex;
   flex-direction: column;
-  height: 400px;
+  height: 300px;
   justify-content: center;
 }
 .poll-question-five {
   display: flex;
   flex-direction: column;
-  height: 400px;
-  justify-content: center;
+  height: 300px;
+  align-content: center;
 }
 
 .poll-desc-div {
@@ -435,7 +435,7 @@ a {
 .query-answer-field {
   display: flex;
   flex-direction: row;
-  margin-right: auto;
+  margin-right: 10%;
 }
 
 .answer-field {
