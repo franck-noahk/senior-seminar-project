@@ -34,22 +34,22 @@ __If you want to take this as a starting point__
 ### How Flutter Lib is layed out
 .
 ├── backend
-│   └── firebase.dart
-├── constants.dart
-├── main.dart
+│   └── firebase.dart	//Interface to interact with Firebase
+├── constants.dart		//Values that are needed across multiple files 
+├── main.dart			//Starting point of application & wrapper for authentication
 ├── models
-│   └── user.dart
+│   └── user.dart		//User object uid is based on authentication	
 └── widgets
     ├── layout
-    │   ├── SettingsLayout.dart
-    │   ├── UpCommingEventsList.dart
-    │   └── loading.dart
+    │   ├── SettingsLayout.dart			//settinga spage in app, 'settings' tab
+    │   ├── UpCommingEventsList.dart	//default page in app, 'events' tab
+    │   └── loading.dart				//Loading page that is called when getting information from internet
     └── pages
-        ├── SignIn.dart
-        ├── eventDetailPage.dart
-        ├── makeEvent.dart
-        └── register.dart
-		
+        ├── SignIn.dart				//Page called when user is not signed in
+        ├── eventDetailPage.dart	//Page called when user taps on an event
+        ├── makeEvent.dart			//Page called when an admin pushes the Floating action button
+        └── register.dart			//Page called when the signed out user wishes to create an acount
+
 #### Firestore data layout
 
 ├── events
