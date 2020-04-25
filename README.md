@@ -31,6 +31,25 @@ __If you want to take this as a starting point__
  - [Getting data once](https://firebase.google.com/docs/firestore/query-data/get-data)
  - [Real Time Updates](https://firebase.google.com/docs/firestore/query-data/listen)
 
+### How Flutter Lib is layed out
+.
+├── backend
+│   └── firebase.dart
+├── constants.dart
+├── main.dart
+├── models
+│   └── user.dart
+└── widgets
+    ├── layout
+    │   ├── SettingsLayout.dart
+    │   ├── UpCommingEventsList.dart
+    │   └── loading.dart
+    └── pages
+        ├── SignIn.dart
+        ├── eventDetailPage.dart
+        ├── makeEvent.dart
+        └── register.dart
+		
 #### Firestore data layout
 
 ├── events
