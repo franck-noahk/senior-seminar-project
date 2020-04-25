@@ -32,6 +32,7 @@ __If you want to take this as a starting point__
  - [Real Time Updates](https://firebase.google.com/docs/firestore/query-data/listen)
 
 ### How Flutter Lib is layed out
+```
 .
 ├── backend
 │   └── firebase.dart	//Interface to interact with Firebase
@@ -49,9 +50,11 @@ __If you want to take this as a starting point__
         ├── eventDetailPage.dart	//Page called when user taps on an event
         ├── makeEvent.dart			//Page called when an admin pushes the Floating action button
         └── register.dart			//Page called when the signed out user wishes to create an acount
+```
 
 #### Firestore data layout
 
+```
 ├── events
 │   └── ex_event
 │   	├── event_time:DateTime
@@ -74,6 +77,7 @@ __If you want to take this as a starting point__
     	├── following:String array
     	├── isAdmin:bool
     	└── isAdminOf:String
+```
 
 ### Firebase -- Functions
 
