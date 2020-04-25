@@ -114,8 +114,9 @@ async function getAllEvents() {
 	db.collection('events').get().then(function (querySnapshot) {
 		querySnapshot.forEach(function (doc) {
 			// doc.data() is never undefined for query doc snapshots
-
-			createEventCard(doc.name, doc.organizer, doc.location, doc.event_time, doc.description);
+			console.log(doc.data());
+			console.log(doc.data().name);
+			createEventCard(doc.data().name, doc.data().organizer, doc.data().location, doc.data().event_time, doc.data().description);
 		});
 	});
 }
@@ -135,27 +136,27 @@ function createEventCard(title, eHost, locate, date, descript) {
 
 		let cardTitle = document.createElement('h5');
 		cardTitle.setAttribute('class', 'card-title event-title');
-		cardTitle.innerText(title);
+		cardTitle.innerText = title;
 		cardBody.appendChild(cardTitle);
 
 		let host = document.createElement('h6');
 		host.setAttribute('class', 'card-host mb-2 text-muted event-host');
-		host.innerText(eHost);
+		host.innerText = eHost;
 		cardBody.appendChild(host);
 
 		let desc = document.createElement('p');
 		desc.setAttribute('class', 'card-text event-description');
-		desc.innerText(descript);
+		desc.innerText = descript;
 		cardBody.appendChild(desc);
 
 		let location = document.createElement('p');
 		location.setAttribute('class', 'card-location event-location');
-		location.innerText(locate);
-		cardBody.appendChild(eventDate);
+		location.innerText = locate;
+		cardBody.appendChild(location);
 
 		let eventDate = document.createElement('p');
 		eventDate.setAttribute('class', 'card-date event-date');
-		eventDate.innerText(date);
+		eventDate.innerText = date.toDate();
 		cardBody.appendChild(eventDate);
 
 		root.appendChild(card);
