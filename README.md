@@ -57,7 +57,7 @@ __If you want to take this as a starting point__
 │   	├── event_time:DateTime
 │   	├── location:string
 │   	├── name:string
-│       └────response (SubCollection of each event)
+│       └────response (SubCollection of each event created as needed)
 │            └── rsvp
 │               └── {Users_uid: String}: isComming | isNotComming | if null default to isNotComming
 ├── orginazations
