@@ -4,7 +4,7 @@ This repository uses [Firebase](https://firebase.google.com/) to handel the back
 
 ## Getting Started
 
-_If you want to take this as a starting point_
+__If you want to take this as a starting point__
  - Install flutter [Follow these steps](https://flutter.dev/docs/get-started/install)
  - After you fork the repo continue by removing /.firebaserc and /firebase.json 
  - Install Firebase Command Line Tools through npm [Detailed instructions](https://firebase.google.com/docs/cli#mac-linux-npm)
@@ -26,7 +26,7 @@ _If you want to take this as a starting point_
 
 ### Firebase -- Firestore
 
- - [Structure Data](https://firebase.google.com/docs/firestore/manage-data/structure-data)
+ - [Structure Data](https://firebase.google.com/docs/firestore/manage-data/structure-data) 
  - [Adding data](https://firebase.google.com/docs/firestore/quickstart#add_data)
  - [Getting data once](https://firebase.google.com/docs/firestore/query-data/get-data)
  - [Real Time Updates](https://firebase.google.com/docs/firestore/query-data/listen)
