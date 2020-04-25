@@ -8,7 +8,7 @@ async function getAdminPriv() {
 	var db = firebase.firestore();
 	if (uid != null) {
 		let docref = db.collection('users').doc(uid);
-		docref.get().then(function(doc) {
+		docref.get().then(function (doc) {
 			let toReturn = doc.data().isAdmin;
 			return toReturn;
 		});
@@ -16,8 +16,8 @@ async function getAdminPriv() {
 		return false;
 	}
 }
-firebase.auth().onAuthStateChanged(function(user) {
-	firebase.auth().onAuthStateChanged(function(user) {
+firebase.auth().onAuthStateChanged(function (user) {
+	firebase.auth().onAuthStateChanged(function (user) {
 		//Pulling values from our db
 		if (user) {
 			uid = user.uid;
@@ -111,8 +111,8 @@ function getEventsForFollowing(userUid) {
 }
 
 async function getAllEvents() {
-	db.collection('events').get().then(function(querySnapshot) {
-		querySnapshot.forEach(function(doc) {
+	db.collection('events').get().then(function (querySnapshot) {
+		querySnapshot.forEach(function (doc) {
 			// doc.data() is never undefined for query doc snapshots
 
 			createEventCard(doc.name, doc.organizer, doc.location, doc.event_time, doc.description);
@@ -200,15 +200,15 @@ async function signin(e) {
 	let email = getInputVal('login-user-name');
 	let password = getInputVal('login-user-password');
 
-	await firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+	await firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
 		// Handle Errors here.
 
 		let errorMessage = error.message;
 
 		if (errorMessage != null) alert(errorMessage);
-		else window.location.replace('index.html');
+		else window.location.assign('index.html');
 	});
-	window.location.replace = 'index.html';
+	window.location.assign('index.html');
 }
 
 async function createAccount(e) {
@@ -218,7 +218,7 @@ async function createAccount(e) {
 	let password = getInputVal('passwordCreate');
 	let passwordCopy = getInputVal('passwordCopy');
 	if (password === passwordCopy)
-		await firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+		await firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
 			// Handle Errors here.
 			let errorCode = error.code;
 			let errorMessage = error.message;
