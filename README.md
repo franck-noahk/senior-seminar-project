@@ -30,7 +30,32 @@ __If you want to take this as a starting point__
  - [Adding data](https://firebase.google.com/docs/firestore/quickstart#add_data)
  - [Getting data once](https://firebase.google.com/docs/firestore/query-data/get-data)
  - [Real Time Updates](https://firebase.google.com/docs/firestore/query-data/listen)
- 
+
+#### Firestore data layout
+
+├── events
+│   └── ex_event
+│   	├── event_time:DateTime
+│   	├── location:string
+│   	├── name:string
+│       └────response (SubCollection of each event)
+│            └── rsvp
+│               └── {Users_uid: String}: isComming | isNotComming | if null default to isNotComming
+├── orginazations
+│   └── ex_org
+│   	├── adminUsers:{users_uuid}
+│   	├── facultySponsor:String
+│   	├── facultySponsorEmail:String
+│   	├── name:string
+│       └── full_name: String
+└── users
+     └── ex_usr
+    	├── displayName:string
+    	├── email:string
+    	├── following:String array
+    	├── isAdmin:bool
+    	└── isAdminOf:String
+
 ### Firebase -- Functions
 
  - [Call function on Database change](https://firebase.google.com/docs/functions/firestore-events)
