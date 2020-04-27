@@ -13,16 +13,8 @@ ThemeData defaultTheme = new ThemeData(
     appBarTheme: AppBarTheme(
       elevation: 5.0,
     ));
+//List of pages at the bottom of screen
 List<Widget> layoutWidgetArr = [
   UpcommingEventsList(),
   SettingsLayout(),
 ];
-String uid = "8buhsULwXsUrgsmYbIjlQyKwWOH3";
-var isFollowing = ["orginizations/PMLryvlhXM7GJwUNbb38"];
-// FirebaseUser currentUser;
-// FirebaseAuth auth = FirebaseAuth.instance;
-
-// Future<void> getcurrentUser() async {
-//   currentUser = await auth.currentUser();
-//   print(currentUser);
-// }
