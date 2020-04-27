@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_bulletin/models/user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+//Way to interact with firebase database
 class FStoredb {
   final String uid;
   FStoredb({this.uid});
@@ -92,10 +93,11 @@ class FStoredb {
   }
 }
 
+// Way to interact with firebase authentication.
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-// Create user obj based on firebaseUser
+  // Create user obj based on firebaseUser
   User _userFromFirebaseUser(FirebaseUser user) {
     return (user != null) ? User(uid: user.uid) : null;
   }
