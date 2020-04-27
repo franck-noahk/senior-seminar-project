@@ -12,25 +12,13 @@ import 'package:provider/provider.dart';
 import 'widgets/pages/SignIn.dart';
 import 'widgets/pages/makeEvent.dart';
 
-// Future<dynamic> myBackgroundMessageHandler(Map<String, dynamic> message) {
-//   if (message.containsKey('data')) {
-//     // Handle data message
-//     final dynamic data = message['data'];
-//   }
 
-//   if (message.containsKey('notification')) {
-//     // Handle notification message
-//     final dynamic notification = message['notification'];
-//   }
-
-//   // Or do other work.
-// }
-
+//This is how the app starts. and it calls the Statefull Widget MyApp
 void main() async {
-  // await getcurrentUser();
   runApp(MyApp());
 }
 
+//Each Stateful widget extends calls a state.
 class MyApp extends StatefulWidget {
   // This widget is the root of your application.
   @override
@@ -40,8 +28,11 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
+    //Builds listends to a stream of data from internet
     return StreamProvider<User>.value(
+      //Spacifically a stream of who is signed in
       value: AuthService().user,
+      //displays/calls another widget called Wrapper
       child: Wrapper(),
     );
   }
@@ -60,13 +51,10 @@ class _WrapperState extends State<Wrapper> {
   final FirebaseMessaging _fcm = FirebaseMessaging();
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    //This is a way of having a single user that is passed around through the app
     var user = Provider.of<User>(context);
+    //user is Signed in
     if (user != null) {
       return StreamProvider<DocumentSnapshot>.value(
         value: user.db.document,
@@ -78,10 +66,11 @@ class _WrapperState extends State<Wrapper> {
           ),
         ),
       );
-    } else {
+    } else { //User needs to sign in.
       return MaterialApp(
         title: 'E-Bulletin Sign in Page',
         theme: defaultTheme,
+        //Custom Written enviornment found in widgets/pages/SignIn.dart
         home: SignIn(),
       );
     }
@@ -105,7 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final FirebaseMessaging _fcm = FirebaseMessaging();
 
   StreamSubscription iosSubscription;
-
+  //Overwriting init to handel notifications when Signed in. 
   @override
   void initState() {
     super.initState();
@@ -174,6 +163,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ],
             ),
+            //This is what is displayed between the top & nav bar. See Constants.dart
             body: layoutWidgetArr[screen],
             bottomNavigationBar: BottomNavigationBar(
               currentIndex: screen,
@@ -193,6 +183,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 });
               },
             ),
+            //should only display if the user is admin
             floatingActionButton: (snapshot.data['isAdmin'])
                 ? FloatingActionButton.extended(
                     onPressed: () {
