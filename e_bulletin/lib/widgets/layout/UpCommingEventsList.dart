@@ -98,44 +98,4 @@ class _UpcommingEventsListState extends State<UpcommingEventsList> {
   }
 }
 
-class TestCards extends StatelessWidget {
-  const TestCards({
-    Key key,
-  }) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: ListView(
-        children: <Widget>[
-          Card(
-            child: ListTile(
-              title: Text("CARD OF FUN"),
-              subtitle: Text("Dates are also fun"),
-            ),
-          ),
-          Card(
-            child: ListTile(
-              title: Text("CARD OF FUN"),
-            ),
-          ),
-          Card(
-            child: ListTile(
-              title: Text("CARD OF FUN"),
-            ),
-          ),
-          Card(
-            child: ListTile(
-              title: Text("CARD OF FUN"),
-            ),
-          ),
-          Card(
-            child: ListTile(
-              title: Text("CARD OF FUN"),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
