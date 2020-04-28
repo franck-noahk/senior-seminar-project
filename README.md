@@ -85,3 +85,9 @@ __If you want to take this as a starting point__
  - [Trigger based on new user or deleting user](https://firebase.google.com/docs/functions/auth-events)
  - [Write Functions in Typescript](https://firebase.google.com/docs/functions/typescript)
  - [Setting up Enviornment variables for API Keys](https://firebase.google.com/docs/functions/config-env)
+
+### Bootstrap Web Framework
+
+ - Strong web framework 
+ - [Cards](https://getbootstrap.com/docs/4.4/components/card/)
+ - [Navbar](https://getbootstrap.com/docs/4.4/components/navbar/)
