@@ -264,12 +264,9 @@ async function getClubs() {
     .then(function (querySnapshot) {
       querySnapshot.forEach(function (doc) {
         // doc.data() is never undefined for query doc snapshots
-        console.log(doc.data());
+        console.log(doc.data().description);
         console.log(doc.data().name);
-        createClubCard(
-          doc.data().name
-          //doc.data().description
-        );
+        createClubCard(doc.data().name, doc.data().description);
       });
     });
 }
@@ -292,10 +289,17 @@ function createClubCard(club, descript) {
     cardTitle.innerText = club;
     cardBody.appendChild(cardTitle);
 
-    let desc = document.createElement("p");
-    desc.setAttribute("class", "card-text club-description");
-    desc.innerText = descript;
-    cardBody.appendChild(desc);
+    if (descript != null) {
+      let desc = document.createElement("p");
+      desc.setAttribute("class", "card-text club-description");
+      desc.innerText = descript;
+      cardBody.appendChild(desc);
+    } else {
+      let desc = document.createElement("p");
+      desc.setAttribute("class", "card-text club-description");
+      desc.innerText = "No description given";
+      cardBody.appendChild(desc);
+    }
 
     let sub = document.createElement("button");
     sub.setAttribute("class", "card-text sub-button");
