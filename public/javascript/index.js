@@ -168,6 +168,11 @@ function createEventCard(title, eHost, locate, date, descript) {
     eventDate.innerText = date.toDate();
     cardBody.appendChild(eventDate);
 
+    let rsvp = document.createElement("button");
+    rsvp.setAttribute("class", "card-button rsvp-button");
+    rsvp.innerText = "RSVP";
+    cardBody.appendChild(rsvp);
+
     root.appendChild(card);
   }
 }
@@ -230,6 +235,11 @@ function createMyEventCard(title, eHost, locate, date, descript) {
     eventDate.innerText = date.toDate();
     cardBody.appendChild(eventDate);
 
+    let edit = document.createElement("button");
+    edit.setAttribute("class", "card-button edit-button");
+    edit.innerText = "Edit";
+    cardBody.appendChild(edit);
+
     root.appendChild(card);
   }
 }
@@ -272,6 +282,11 @@ function createClubCard(club, descript) {
     desc.setAttribute("class", "card-text club-description");
     desc.innerText = descript;
     cardBody.appendChild(desc);
+
+    let sub = document.createElement("button");
+    sub.setAttribute("class", "card-text sub-button");
+    sub.innerText = "Subscribe";
+    cardBody.appendChild(sub);
 
     root.appendChild(card);
   }
