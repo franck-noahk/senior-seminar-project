@@ -112,6 +112,7 @@ function getEventsForFollowing(userUid) {
 }
 
 async function getAllEvents() {
+  //pulls events for the my bulletin page
   db.collection("events")
     .get()
     .then(function (querySnapshot) {
@@ -178,6 +179,7 @@ function createEventCard(title, eHost, locate, date, descript) {
 }
 
 async function getMyEvents() {
+  //pulls events for the my events admin page
   db.collection("events")
     .where("organizer", "==", "")
     .get()
@@ -245,6 +247,7 @@ function createMyEventCard(title, eHost, locate, date, descript) {
 }
 
 async function getClubs() {
+  // pulls the organizations for the find clubs page
   db.collection("orginizations")
     .get()
     .then(function (querySnapshot) {
