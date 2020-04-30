@@ -113,21 +113,27 @@ function getEventsForFollowing(userUid) {
 
 async function getAllEvents() {
   //pulls events for the my bulletin page
-  db.collection("events")
+  db.collection("users")
+    .doc(uid)
     .get()
-    .then(function (querySnapshot) {
-      querySnapshot.forEach(function (doc) {
-        // doc.data() is never undefined for query doc snapshots
-        console.log(doc.data());
-        console.log(doc.data().name);
-        createEventCard(
-          doc.data().name,
-          doc.data().organizer,
-          doc.data().location,
-          doc.data().event_time,
-          doc.data().description
-        );
-      });
+    .then(function (snapshot) {
+      db.collection("events")
+        .where("organizer", "in", snapshot.data().isFollowing)
+        .get()
+        .then(function (querySnapshot) {
+          querySnapshot.forEach(function (doc) {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.data());
+            console.log(doc.data().name);
+            createEventCard(
+              doc.data().name,
+              doc.data().organizer,
+              doc.data().location,
+              doc.data().event_time,
+              doc.data().description
+            );
+          });
+        });
     });
 }
 if (document.getElementById("bulletin-content-div")) {
