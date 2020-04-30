@@ -179,23 +179,28 @@ function createEventCard(title, eHost, locate, date, descript) {
 }
 
 async function getMyEvents() {
-  //pulls events for the my events admin page
-  db.collection("events")
-    .where("organizer", "==", "")
+  //pulls events for the my events admin page, just events that the admin is over.
+  db.collection("users")
+    .doc(uid)
     .get()
-    .then(function (querySnapshot) {
-      querySnapshot.forEach(function (doc) {
-        // doc.data() is never undefined for query doc snapshots
-        console.log(doc.data());
-        console.log(doc.data().name);
-        createMyEventCard(
-          doc.data().name,
-          doc.data().organizer,
-          doc.data().location,
-          doc.data().event_time,
-          doc.data().description
-        );
-      });
+    .then(function (snapshot) {
+      db.collection("events")
+        .where("organizer", "in", snapshot.data().isAdminOf)
+        .get()
+        .then(function (querySnapshot) {
+          querySnapshot.forEach(function (doc) {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.data());
+            console.log(doc.data().name);
+            createMyEventCard(
+              doc.data().name,
+              doc.data().organizer,
+              doc.data().location,
+              doc.data().event_time,
+              doc.data().description
+            );
+          });
+        });
     });
 }
 if (document.getElementById("events-content-div")) {
